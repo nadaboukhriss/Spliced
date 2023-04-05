@@ -458,6 +458,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2463828663625952475, guid: b0af1f762545843b59aff1b01f235580, type: 3}
   m_PrefabInstance: {fileID: 2463828664403642737}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1876631970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2463828663625952473, guid: b0af1f762545843b59aff1b01f235580, type: 3}
+  m_PrefabInstance: {fileID: 2463828664403642737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1876631977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876631970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1c6df6f3400c44584c9d62f0006b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1914977271
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1914977272}
   - component: {fileID: 1914977273}
+  - component: {fileID: 1914977274}
   m_Layer: 0
   m_Name: EntranceHitbox
   m_TagString: Untagged
@@ -516,6 +534,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.18}
   m_EdgeRadius: 0
+--- !u!114 &1914977274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914977271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e56858d9579f99428a264802be7d886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchToSceneWithBuildIndex: 1
 --- !u!1 &2031991573
 GameObject:
   m_ObjectHideFlags: 0
