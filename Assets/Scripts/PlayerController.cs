@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
 
+    SwapCharacters swapCharacters;
+
     bool canMove = true;
     // Start is called before the first frame update
     void Start()
@@ -25,13 +27,13 @@ public class PlayerController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        swapCharacters = GetComponent<SwapCharacters>();
     }
 
     private void FixedUpdate() {
         if(movementInput != Vector2.zero && canMove){
             animator.SetFloat("XInput", movementInput.x);
             animator.SetFloat("YInput", movementInput.y);
-
             bool success = TryMove(movementInput);
             if(!success){
                 success = TryMove(new Vector2(movementInput.x,0));

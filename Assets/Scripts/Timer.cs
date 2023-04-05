@@ -5,15 +5,20 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public GameObject player;
     public Slider timerSlider;
     public Text timerText;
     public float swapTime;
     public float swapSpeed;
+    
+    private SwapCharacters swap;
 
     private bool timerEnded;
-    private int timeSpent;
+    private float timeSpent;
     private int it = 0;
+
+    public void Awake(){
+        swap = GetComponent<SwapCharacters>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -25,25 +30,17 @@ public class Timer : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        timeSpent += 1;
+    void Update(){
+        timeSpent += Time.deltaTime;
         
-        float  score = swapTime - timeSpent / swapSpeed;
-        print(score);
-        
-        
-        if (score >= 0){
-            timerSlider.value = score;
+        print(swapTime - timeSpent/swapTime);
+        if (timeSpent < swapTime){
+            timerSlider.value = swapTime - timeSpent;
         }
         else{
-            player = GameObject.FindGameObjectWithTag("Player");
-            SwapCharacters swap = player.GetComponent<SwapCharacters>();
             swap.SwapCharacter();
             //this.resetTimer();
         }
-
     }
 
     public void resetTimer(){
