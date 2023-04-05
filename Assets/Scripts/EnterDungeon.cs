@@ -10,8 +10,8 @@ public class EnterDungeon : MonoBehaviour
 
     [SerializeField]
     private Transform teleportTo;
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    private void OnTriggerStay2D(Collider2D other)
+    {   
         if(other.tag == "Player")
         {
             //LoadSceneMode.Single vs .Additive - single vs mulitple levels loaded at once

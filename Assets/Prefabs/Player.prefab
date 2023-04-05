@@ -402,7 +402,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  moveSpeed: 3
+  moveSpeed: 6
   collisionOffset: 0.001
 --- !u!95 &2463828663625952478
 Animator:

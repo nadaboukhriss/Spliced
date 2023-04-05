@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  moveSpeed: 0
+  moveSpeed: 1
   collisionOffset: 0.2
   collisionBox: {fileID: 1197195683397481997}
   healthbar: {fileID: 1455215735932234694}
@@ -178,8 +178,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000053694055, y: 0.004183248}
-  m_Size: {x: 0.85098493, y: 0.21762097}
+  m_Offset: {x: 0.0022169563, y: -0.32385403}
+  m_Size: {x: 0.8908824, y: 0.24422142}
   m_Direction: 1
 --- !u!114 &6224758087616543600
 MonoBehaviour:
@@ -605,8 +605,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000017991648, y: 0.24075139}
-  m_Size: {x: 0.87043923, y: 0.6924212}
+  m_Offset: {x: 0.003805209, y: -0.09794094}
+  m_Size: {x: 0.8827015, y: 0.71526015}
   m_Direction: 1
 --- !u!1001 &1721120890703290064
 PrefabInstance:
@@ -664,12 +664,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1694409678596741074, guid: 0513568b352faad429a1d69773174af5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 0d1f9e7fb8b7ab9419fffd4c5708cc96, type: 3}
+    - target: {fileID: 1694409678596741074, guid: 0513568b352faad429a1d69773174af5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694409678596741074, guid: 0513568b352faad429a1d69773174af5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908687556438271102, guid: 0513568b352faad429a1d69773174af5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 0d1f9e7fb8b7ab9419fffd4c5708cc96, type: 3}
+    - target: {fileID: 3908687556438271102, guid: 0513568b352faad429a1d69773174af5, type: 3}
       propertyPath: m_SortingOrder
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3908687556438271102, guid: 0513568b352faad429a1d69773174af5, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5865454857248073280, guid: 0513568b352faad429a1d69773174af5, type: 3}
       propertyPath: m_LocalPosition.x

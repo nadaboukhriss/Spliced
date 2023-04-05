@@ -33,7 +33,6 @@ public class Timer : MonoBehaviour
     void Update(){
         timeSpent += Time.deltaTime;
         
-        print(swapTime - timeSpent/swapTime);
         if (timeSpent < swapTime){
             timerSlider.value = swapTime - timeSpent;
         }
