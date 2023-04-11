@@ -15,11 +15,10 @@ public class SwordAttack : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D other){
-        print("Hit!");
         if(other.tag == "Enemy"){
-            print("Hit enemy!");
-            Enemy enemy = other.GetComponent<Enemy>();
+            Enemy enemy = other.transform.parent.GetComponent<Enemy>();
             if(enemy != null){
+                print("hit");
                 enemy.TakeDamage(damage);
             }
         }

@@ -85,14 +85,12 @@ public class Enemy : MonoBehaviour
     }
 
     public void TakeDamage(float damage){
-        if(health >= 0){
             health -= damage;
+            health = health < 0 ? 0 : health;
             healthbar.transform.localScale = new Vector3(health/maxHealth,healthbar.transform.localScale.y,healthbar.transform.localScale.z);
             if(health <= 0){
                 animator.SetTrigger("Dead");
             }
-        }
-        
     }
 
     public void Defeated(){
