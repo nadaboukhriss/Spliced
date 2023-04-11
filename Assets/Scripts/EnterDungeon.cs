@@ -10,13 +10,28 @@ public class EnterDungeon : MonoBehaviour
 
     [SerializeField]
     private Transform teleportTo;
-    private void OnTriggerStay2D(Collider2D other)
-    {   
-        if(other.tag == "Player")
+    private bool isPlayerInCollider = false;
+    private Collider2D playerCollider;
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+       if (other.tag == "Player")
         {
-            //LoadSceneMode.Single vs .Additive - single vs mulitple levels loaded at once
-            //SceneManager.LoadScene(switchToSceneWithBuildIndex, LoadSceneMode.Single);
-            other.transform.position = teleportTo.position;
+            isPlayerInCollider = true;
+            playerCollider = other;
+        } 
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        isPlayerInCollider = false;
+    }   
+
+    private void Update()
+    {
+        if(Input.GetButtonDown("Fire2") && isPlayerInCollider)
+        {
+            playerCollider.transform.position = teleportTo.position;
         }
     }
 }
