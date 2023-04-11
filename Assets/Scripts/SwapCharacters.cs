@@ -7,11 +7,6 @@ public class SwapCharacters : MonoBehaviour
     // referenses to controlled game objects
 	public GameObject avatar1, avatar2;
 
-    [SerializeField]
-    private AnimatorOverrideController avatar1Animations;
-    [SerializeField]
-    private AnimatorOverrideController avatar2Animations;
-
     private Animator animator;
 
     private GameObject currentAvatar;
