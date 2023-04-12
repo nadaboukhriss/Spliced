@@ -17,21 +17,19 @@ public class PlayerController : MonoBehaviour
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     Animator animator;
-    Collider2D movementCollider;
 
     SwapCharacters swapCharacters;
 
     bool canMove = true;
     // Start is called before the first frame update
-
-    private void Awake()
+    void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         swapCharacters = GetComponent<SwapCharacters>();
-        movementCollider = GetComponent<Collider2D>();
     }
+
     private void FixedUpdate() {
         if(movementInput != Vector2.zero && canMove){
             animator.SetFloat("XInput", movementInput.x);
@@ -51,7 +49,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private bool TryMove(Vector2 direction){
-        int count = movementCollider.Cast(
+        int count = rigidbody2d.Cast(
             direction,
             movementFilter,
             castCollisions,
