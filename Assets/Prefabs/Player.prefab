@@ -438,8 +438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatar1: {fileID: 7013427374199162144}
   avatar2: {fileID: 607921551358234217}
-  avatar1Animations: {fileID: 22100000, guid: 923eb57ee87cd614f902ac6c106b7a20, type: 2}
-  avatar2Animations: {fileID: 22100000, guid: 50f9d7c2242ef5247b8c813e6b6d62a4, type: 2}
 --- !u!114 &1408099763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,7 +483,7 @@ GameObject:
   - component: {fileID: 5661036024561164272}
   m_Layer: 10
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -529,7 +527,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
 --- !u!114 &5661036024561164272
 MonoBehaviour:
