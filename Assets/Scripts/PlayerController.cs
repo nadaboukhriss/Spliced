@@ -71,7 +71,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnFire(){
-        animator.SetTrigger("swordAttack");
+        if (canMove)
+        {
+            animator.SetTrigger("swordAttack");
+        }
+        
     }
 
     public void LockMovement(){
