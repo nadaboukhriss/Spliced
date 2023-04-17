@@ -80,4 +80,8 @@ public class SwapCharacters : MonoBehaviour
 			        break;
 		    }
     }
+
+    public int getCurrentCharacter(){
+        return whichAvatarIsOn;
+    }
 }
