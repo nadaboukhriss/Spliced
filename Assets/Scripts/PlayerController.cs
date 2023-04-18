@@ -74,8 +74,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void OnFire(){
-        if (canMove)
+    public void OnFire(InputAction.CallbackContext ctx)
+    {
+        if (canMove && ctx.performed)
         {
             animator.SetTrigger("swordAttack");
         }
