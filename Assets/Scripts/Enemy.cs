@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float collisionOffset = 0.001f;
     [SerializeField] Collider2D collisionBox;
 
-    [SerializeField] GameObject healthbar;
+    //[SerializeField] GameObject healthbar;
     public ContactFilter2D movementFilter;
     
 
@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage){
             health -= damage;
             health = health < 0 ? 0 : health;
-            healthbar.transform.localScale = new Vector3(health/maxHealth,healthbar.transform.localScale.y,healthbar.transform.localScale.z);
+            //healthbar.transform.localScale = new Vector3(health/maxHealth,healthbar.transform.localScale.y,healthbar.transform.localScale.z);
             if(health <= 0){
                 animator.SetTrigger("Dead");
             }

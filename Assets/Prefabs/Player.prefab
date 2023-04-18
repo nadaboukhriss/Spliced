@@ -156,7 +156,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,9 +174,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1000
+  m_SortingLayerID: 440385903
+  m_SortingLayer: 2
+  m_SortingOrder: 5
   m_Sprite: {fileID: 1041118780, guid: ca63f5decfef143fca1ccc746ded3060, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -187,7 +187,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &2463828663625952479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatar1: {fileID: 7013427374199162144}
   avatar2: {fileID: 607921551358234217}
-  clock: {fileID: 0}
+  clock: {fileID: 4200252062332916925, guid: 75a8dfa01cd353447b28148681c2409d, type: 3}
 --- !u!114 &1408099763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5faec30b76c1a3e45b8cc42a637d5927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerSlider: {fileID: 0}
+  timerSlider: {fileID: 3136461250738030918, guid: 27b664e56464f06479f9f4b2ac369d37, type: 3}
   timerText: {fileID: 0}
   swapTime: 5
   swapSpeed: 50
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 4020679019295556443, guid: 0513568b352faad429a1d69773174af5, type: 3}
   inventory:
     items: []
 --- !u!1 &4643936467570383701
