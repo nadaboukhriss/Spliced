@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
     public void SetVelocity(Vector2 movementValue){
         movementInput = movementValue; 
     }
-
+    
     public void Attack(){
         print("Attack!");
     }

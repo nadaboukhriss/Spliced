@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SwapCharacters : MonoBehaviour
 {
     // referenses to controlled game objects
 	public GameObject avatar1, avatar2;
 
+    [SerializeField]
+    private TimeDial clock;
     private Animator animator;
 
     private GameObject currentAvatar;
     private GameObject timer;
 
+
+    private float timeSpentAvatar1 = 1f;
+    private float timeSpentAvatar2 = 1f;
+    private float timeSpentTotal = 2f;
     // variable contains which avatar is on and active
-	int whichAvatarIsOn = 1;
+    int whichAvatarIsOn = 1;
 
     public void Awake(){
         animator = GetComponent<Animator>();
@@ -22,6 +29,7 @@ public class SwapCharacters : MonoBehaviour
     void Start()
     {
         // enable first avatar and disable another one
+        animator.SetBool("isFox", false);
 		avatar1.gameObject.SetActive (true);
         // animator.runtimeAnimatorController = avatar1Animations as RuntimeAnimatorController;
         currentAvatar = avatar1.gameObject;
@@ -29,17 +37,32 @@ public class SwapCharacters : MonoBehaviour
 		avatar2.gameObject.SetActive (false);
 
     }
-
-    // Update is called once per frame
-    void Update()
+    public void OnSwitchCharacter(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
+        print("switch");
+        if (ctx.started){
             this.SwapCharacter();
-            
         }
+        
     }
 
+    public void FixedUpdate()
+    {
+        timeSpentTotal += Time.fixedDeltaTime;
+        switch (whichAvatarIsOn)
+        {
+            // if the first avatar is on
+            case 1:
+
+                timeSpentAvatar1 += Time.fixedDeltaTime;
+                break;
+            // if the second avatar is on
+            case 2:
+                timeSpentAvatar2 += Time.fixedDeltaTime;
+                break;
+        }
+        clock.UpdateDial(timeSpentAvatar1, timeSpentAvatar2, timeSpentTotal);
+    }
     public Animator GetAnimator(){
         return currentAvatar.GetComponent<Animator>();
     }
@@ -47,7 +70,6 @@ public class SwapCharacters : MonoBehaviour
         Timer slider = GetComponent<Timer>();
         slider.resetTimer();
         animator.SetBool("isFox", whichAvatarIsOn == 2);
-        animator.SetTrigger("switchCharacter");
 
         // processing whichAvatarIsOn variable
         switch (whichAvatarIsOn) {

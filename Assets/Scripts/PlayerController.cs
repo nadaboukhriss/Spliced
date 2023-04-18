@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     Collider2D movementCollider;
+    PlayerInput inputActions;
 
     SwapCharacters swapCharacters;
 
@@ -31,16 +32,19 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         swapCharacters = GetComponent<SwapCharacters>();
         movementCollider = GetComponent<Collider2D>();
+        inputActions = GetComponent<PlayerInput>();
     }
     private void FixedUpdate() {
         if(movementInput != Vector2.zero && canMove){
             animator.SetFloat("XInput", movementInput.x);
             animator.SetFloat("YInput", movementInput.y);
             bool success = TryMove(movementInput);
-            if(!success){
+            if(!success && movementInput.x != 0)
+            {
                 success = TryMove(new Vector2(movementInput.x,0));
             }
-            if(!success){
+            if(!success && movementInput.y != 0)
+            {
                 success = TryMove(new Vector2(0,movementInput.y));
             }
             animator.SetBool("isWalking", success);
@@ -57,7 +61,6 @@ public class PlayerController : MonoBehaviour
             castCollisions,
             moveSpeed*Time.fixedDeltaTime + collisionOffset
         );
-        
 
         if(count == 0){
             rigidbody2d.MovePosition(rigidbody2d.position + direction*moveSpeed*Time.fixedDeltaTime);
@@ -65,14 +68,13 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-    void OnMove(InputValue movementValue){
-        
-        movementInput = movementValue.Get<Vector2>();
-        
-        
+    public void OnMove(InputAction.CallbackContext ctx){
+        movementInput = ctx.ReadValue<Vector2>();
+
+
     }
 
-    void OnFire(){
+    public void OnFire(){
         if (canMove)
         {
             animator.SetTrigger("swordAttack");

@@ -5,10 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class Dialogue
 {
-    public string name;
-    public Sprite icon;
-
-    [TextArea(2,6)]
+    [TextArea(2, 6)]
     public string[] sentences;
-    
+
+    public void TriggerDialogue(string name, Sprite icon)
+    {
+        DialogueManager.instance.StartDialogue(sentences, name, icon);
+    }
+
 }

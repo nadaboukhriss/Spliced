@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class DialogueManager : MonoBehaviour
     private TMP_Text nameText;
     [SerializeField]
     private Image iconImage;
+    [SerializeField]
+    private PlayerInput playerInput;
 
     [SerializeField]
     private Animator animator;
@@ -24,28 +27,30 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
 
+    public static DialogueManager instance;
 
+    private void Awake()
+    {
+        if (instance != null)
+            Debug.LogWarning("Multiple instances!");
+
+        instance = this;
+    }
     void Start()
     {
-        sentences = new Queue<string>();   
+        dialoguePanel.SetActive(false);
+        sentences = new Queue<string>();
     }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DisplayNextSentence();
-        }
-    }
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(string[] dialogue,string name, Sprite icon)
     {
         Time.timeScale = 0;
         sentences.Clear();
-        animator.SetBool("isOpen", true);
-
-        nameText.text = dialogue.name;
-        iconImage.sprite = dialogue.icon;
-        foreach (string sentence in dialogue.sentences)
+        dialoguePanel.SetActive(true);
+        //animator.SetBool("isOpen", true);
+        playerInput.SwitchCurrentActionMap("Dialogue");
+        nameText.text = name;
+        iconImage.sprite = icon;
+        foreach (string sentence in dialogue)
         {
             sentences.Enqueue(sentence);
         }
@@ -53,8 +58,16 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
+    public void OnDisplayNextSentence(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            DisplayNextSentence();
+        }
+    }
     public void DisplayNextSentence()
     {
+        print("Next");
         if(sentences.Count == 0)
         {
             EndDialogue();
@@ -78,7 +91,9 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        animator.SetBool("isOpen", false);
+        playerInput.SwitchCurrentActionMap("Player");
+        //animator.SetBool("isOpen", false);
+        dialoguePanel.SetActive(false);
         Time.timeScale = 1;
     }
 

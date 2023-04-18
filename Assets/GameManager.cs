@@ -10,5 +10,19 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
     }
+
+
+    public void QuitGame()
+    {
+        if (UnityEditor.EditorApplication.isPlaying)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+        else
+        {
+            Application.Quit();
+        }
+        
+    }
     
 }
