@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
     public GameObject fireballPrefab;
     public float fireballSpeed = 10f;
+    public float damage = 5f;
 
     private Vector3 pastPos;
     private Vector3 difference;
@@ -92,6 +93,17 @@ public class PlayerController : MonoBehaviour
         switch (currentAvatar) {
             case 1:
                 animator.SetTrigger("swordAttack");
+                LayerMask enemyLayers = LayerMask.GetMask("Enemy");
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 2f, enemyLayers);
+                foreach (Collider2D ene in hitEnemies) {
+                    print("Hello there enemy!");
+                    GameObject enemyGameObject = ene.gameObject;
+                    Enemy enemyComponent = enemyGameObject.GetComponent<Enemy>();
+                    
+                    if(enemyComponent != null){
+                        enemyComponent.TakeDamage(damage);
+                    }
+                }
                 break;
             case 2:
                 animator.SetTrigger("swordAttack");
@@ -122,10 +134,10 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D other){
-        print("Hit!");
-        if(other.tag == "Enemy"){
-            print("Hit enemy!");
+        // print("Hit!");
+        // if(other.tag == "Enemy"){
+        //     print("Hit enemy!");
             
-        }
+        // }
     }
 }
