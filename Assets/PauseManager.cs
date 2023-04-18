@@ -7,38 +7,26 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject menuUI;
-    [SerializeField]
     private PlayerInput playerInput;
 
 
     public static bool isPaused = false;
 
-    public static PauseManager instance;
+    public static PauseManager Instance;
 
 
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
             Debug.LogWarning("Multiple instances!");
 
-        instance = this;
+        Instance = this;
     }
 
-    public void OnNextTab(InputAction.CallbackContext context)
+    private void Start()
     {
-        print("NextTab");
-        if (context.started)
-        {
-            menuUI.GetComponent<TabGroup>().NextTab();
-        }
-    }
-    public void OnPrevTab(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            menuUI.GetComponent<TabGroup>().PrevTab();
-        }
+        playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
     }
 
     public void OnSwitchTab(InputAction.CallbackContext context)

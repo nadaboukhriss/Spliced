@@ -10,7 +10,7 @@ public class Dialogue
 
     public void TriggerDialogue(string name, Sprite icon)
     {
-        DialogueManager.instance.StartDialogue(sentences, name, icon);
+        DialogueManager.Instance.StartDialogue(sentences, name, icon);
     }
 
 }

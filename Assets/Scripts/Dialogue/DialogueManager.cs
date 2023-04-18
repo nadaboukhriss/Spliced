@@ -16,37 +16,36 @@ public class DialogueManager : MonoBehaviour
     private TMP_Text nameText;
     [SerializeField]
     private Image iconImage;
-    [SerializeField]
     private PlayerInput playerInput;
-
-    [SerializeField]
-    private Animator animator;
 
     [SerializeField]
     private float timeBetweenCharacters;
 
     private Queue<string> sentences;
 
-    public static DialogueManager instance;
+    public static DialogueManager Instance;
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
             Debug.LogWarning("Multiple instances!");
 
-        instance = this;
+        Instance = this;
+
+        
     }
+
     void Start()
     {
         dialoguePanel.SetActive(false);
         sentences = new Queue<string>();
+        playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
     }
     public void StartDialogue(string[] dialogue,string name, Sprite icon)
     {
         Time.timeScale = 0;
         sentences.Clear();
         dialoguePanel.SetActive(true);
-        //animator.SetBool("isOpen", true);
         playerInput.SwitchCurrentActionMap("Dialogue");
         nameText.text = name;
         iconImage.sprite = icon;
@@ -92,7 +91,6 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         playerInput.SwitchCurrentActionMap("Player");
-        //animator.SetBool("isOpen", false);
         dialoguePanel.SetActive(false);
         Time.timeScale = 1;
     }
