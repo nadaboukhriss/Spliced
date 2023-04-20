@@ -10,9 +10,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private HealthBar healthBar;
 
-    private int health;
+    
 
     public Inventory inventory;
+    public float xp = 0f;
+    private int health;
+    private float xpChange = 0f;
 
     private void Awake()
     {
@@ -22,6 +25,16 @@ public class Player : MonoBehaviour
     public Player()
     {
         inventory = new Inventory();
+    }
+
+    public void Update()
+    {
+        print("XP: "+ xp);
+    }
+
+    public void ChangeXP(float change)
+    {
+        xp += change;
     }
 
 

@@ -37,7 +37,7 @@ public class Timer : MonoBehaviour
             timerSlider.value = swapTime - timeSpent;
         }
         else{
-            swap.SwapCharacter();
+            //swap.SwapCharacter();
             //this.resetTimer();
         }
     }
