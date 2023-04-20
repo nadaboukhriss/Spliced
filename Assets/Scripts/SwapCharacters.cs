@@ -114,4 +114,8 @@ public class SwapCharacters : MonoBehaviour
     {
         return timeSpentAvatar2;
     }
+
+    public int getCurrentCharacter(){
+        return whichAvatarIsOn;
+    }
 }

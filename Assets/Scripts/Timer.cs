@@ -11,8 +11,6 @@ public class Timer : MonoBehaviour
     public float swapSpeed;
     
     private SwapCharacters swap;
-
-    private bool timerEnded;
     private float timeSpent;
     private int it = 0;
 
@@ -22,8 +20,6 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        timerEnded = false;
         timerSlider.maxValue = swapTime;
         timerSlider.value = swapTime;
         timeSpent = 0;
