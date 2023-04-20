@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 105277328274714726}
   - component: {fileID: 1281071596595636608}
   - component: {fileID: 1954888701575187173}
+  - component: {fileID: 7539757413904643038}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -100,3 +101,20 @@ MonoBehaviour:
   speed: 10
   dirRight: 0
   dirUp: 0
+  maxTimeAlive: 20
+--- !u!58 &7539757413904643038
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105277328274714729}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.17996882, y: -0.099397734}
+  serializedVersion: 2
+  m_Radius: 0.3134517

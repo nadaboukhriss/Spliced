@@ -88,8 +88,6 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext ctx){
         movementInput = ctx.ReadValue<Vector2>();
-
-
     }
 
     void OnFire(InputAction.CallbackContext ctx){
