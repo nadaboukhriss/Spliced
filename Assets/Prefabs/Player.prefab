@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2440593549728929486}
+  - component: {fileID: 4698230311199486134}
   m_Layer: 6
   m_Name: Player2
   m_TagString: Player
@@ -32,6 +33,24 @@ Transform:
   m_Father: {fileID: 2463828663625952475}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4698230311199486134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607921551358234217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4131bbcf3bfd143a99dac4198e05ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttack:
+    maxCooldown: 1
+  specialAbility:
+    maxCooldown: 0
+  switchCharacter:
+    maxCooldown: 10
 --- !u!1 &1862860934806007147
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +130,8 @@ GameObject:
   - component: {fileID: 1408099763}
   - component: {fileID: 4840930014497367111}
   - component: {fileID: 8655640767024826585}
+  - component: {fileID: 3869768457510086600}
+  - component: {fileID: 3314410762657914449}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -238,7 +259,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2463828663625952474}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnFire
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -437,8 +458,13 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  fireballPrefab: {fileID: 0}
+  fireballSpeed: 10
+  damage: 5
   moveSpeed: 6
   collisionOffset: 0.001
+  dirRight: 0
+  dirUp: 0
 --- !u!95 &2463828663625952478
 Animator:
   serializedVersion: 4
@@ -473,7 +499,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatar1: {fileID: 7013427374199162144}
   avatar2: {fileID: 607921551358234217}
-  clock: {fileID: 4200252062332916925, guid: 75a8dfa01cd353447b28148681c2409d, type: 3}
+  maxTime: 30
+  clock: {fileID: 0}
 --- !u!114 &1408099763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,9 +513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5faec30b76c1a3e45b8cc42a637d5927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerSlider: {fileID: 3136461250738030918, guid: 27b664e56464f06479f9f4b2ac369d37, type: 3}
+  timerSlider: {fileID: 0}
   timerText: {fileID: 0}
-  swapTime: 5
+  swapTime: 20
   swapSpeed: 50
 --- !u!70 &4840930014497367111
 CapsuleCollider2D:
@@ -519,9 +546,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthBar: {fileID: 4020679019295556443, guid: 0513568b352faad429a1d69773174af5, type: 3}
+  healthBar: {fileID: 0}
   inventory:
     items: []
+  xp: 0
+--- !u!114 &3869768457510086600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463828663625952473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4131bbcf3bfd143a99dac4198e05ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttack:
+    maxCooldown: 2
+  specialAbility:
+    maxCooldown: 5
+  switchCharacter:
+    maxCooldown: 10
+--- !u!114 &3314410762657914449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463828663625952473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3443ee08cc4a8dc48a1de2918309dc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttack:
+    maxCooldown: 1
+  specialAbility:
+    maxCooldown: 4
+  switchCharacter:
+    maxCooldown: 20
 --- !u!1 &4643936467570383701
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7912168453745682366}
+  - component: {fileID: 7308778146456001983}
   m_Layer: 6
   m_Name: Player1
   m_TagString: Player
@@ -626,6 +691,24 @@ Transform:
   m_Father: {fileID: 2463828663625952475}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7308778146456001983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013427374199162144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3443ee08cc4a8dc48a1de2918309dc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttack:
+    maxCooldown: 2
+  specialAbility:
+    maxCooldown: 0
+  switchCharacter:
+    maxCooldown: 10
 --- !u!1 &9044665771501980002
 GameObject:
   m_ObjectHideFlags: 0

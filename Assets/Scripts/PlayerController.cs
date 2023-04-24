@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     
     public ContactFilter2D movementFilter;
     public GameObject fireballPrefab;
-    public float fireballSpeed = 10f;
-    public float damage = 5f;
+    //public float fireballSpeed = 10f;
+    //public float damage = 5f;
 
     private Vector3 pastPos;
     private Vector3 difference;
@@ -90,11 +90,12 @@ public class PlayerController : MonoBehaviour
         movementInput = ctx.ReadValue<Vector2>();
     }
 
-    void OnFire(InputAction.CallbackContext ctx){
+    public void OnBasicAttack(InputAction.CallbackContext ctx){
         if (canMove && ctx.performed)
         {
             currentAvatar = swapCharacters.getCurrentCharacter();
-            switch (currentAvatar) {
+            swapCharacters.GetCurrentPersonality().BasicAttack();
+            /*switch (currentAvatar) {
                 case 1:
                     animator.SetTrigger("swordAttack");
                     LayerMask enemyLayers = LayerMask.GetMask("Enemy");
@@ -113,9 +114,26 @@ public class PlayerController : MonoBehaviour
                     animator.SetTrigger("swordAttack");
                     ThrowFireball();
                     break;
-            }
+            }*/
         }
        
+    }
+
+    public void OnSpecialAttack(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            swapCharacters.GetCurrentPersonality().SpecialAbility();
+        }
+    }
+
+    public void OnSwitchCharacter(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            swapCharacters.GetCurrentPersonality().SwitchCharacter();
+        }
+
     }
 
     void ThrowFireball(){

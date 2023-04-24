@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        print("XP: "+ xp);
     }
 
     public void ChangeXP(float change)

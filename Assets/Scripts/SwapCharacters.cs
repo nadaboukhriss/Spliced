@@ -12,7 +12,7 @@ public class SwapCharacters : MonoBehaviour
     private TimeDial clock;
     private Animator animator;
 
-    private GameObject currentAvatar;
+    private PersonalityController currentAvatar;
     private GameObject timer;
 
 
@@ -32,7 +32,7 @@ public class SwapCharacters : MonoBehaviour
         animator.SetBool("isFox", false);
 		avatar1.gameObject.SetActive (true);
         // animator.runtimeAnimatorController = avatar1Animations as RuntimeAnimatorController;
-        currentAvatar = avatar1.gameObject;
+        currentAvatar = GetComponent<Personality1Controller>();
 
 		avatar2.gameObject.SetActive (false);
         maxTime = GetComponent<Timer>().swapTime;
@@ -68,9 +68,6 @@ public class SwapCharacters : MonoBehaviour
         }
         clock.UpdateDial(timeSpentAvatar1, timeSpentAvatar2, GetComponent<Timer>().swapTime);
     }
-    public Animator GetAnimator(){
-        return currentAvatar.GetComponent<Animator>();
-    }
     public void SwapCharacter (){
         Timer slider = GetComponent<Timer>();
         slider.resetTimer();
@@ -84,10 +81,10 @@ public class SwapCharacters : MonoBehaviour
 
 			        // then the second avatar is on now
 			        whichAvatarIsOn = 2;
-                    currentAvatar = avatar2.gameObject;
-                    //animator.runtimeAnimatorController = avatar2Animations as RuntimeAnimatorController;
-			        // disable the first one and anable the second one
-			        avatar1.gameObject.SetActive (false);
+                    currentAvatar = GetComponent<Personality2Controller>();
+                //animator.runtimeAnimatorController = avatar2Animations as RuntimeAnimatorController;
+                // disable the first one and anable the second one
+                    avatar1.gameObject.SetActive (false);
 			        avatar2.gameObject.SetActive (true);
 			        break;
 
@@ -96,16 +93,20 @@ public class SwapCharacters : MonoBehaviour
 
 			        // then the first avatar is on now
 			        whichAvatarIsOn = 1;
-                    currentAvatar = avatar1.gameObject;
-                    //animator.runtimeAnimatorController = avatar1Animations as RuntimeAnimatorController;
-			        // disable the second one and anable the first one
-			        avatar1.gameObject.SetActive (true);
+                    currentAvatar = GetComponent<Personality1Controller>();
+                //animator.runtimeAnimatorController = avatar1Animations as RuntimeAnimatorController;
+                // disable the second one and anable the first one
+                avatar1.gameObject.SetActive (true);
 			        avatar2.gameObject.SetActive (false);
 			        break;
 		    }
         animator.SetBool("isFox", whichAvatarIsOn == 2);
     }
 
+    public PersonalityController GetCurrentPersonality()
+    {
+        return currentAvatar;
+    }
     public float GetAvatar1Time()
     {
         return timeSpentAvatar1;
