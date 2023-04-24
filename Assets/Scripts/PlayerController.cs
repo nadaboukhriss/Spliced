@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour
     public float dirRight;
     public float dirUp;
 
+    [Header("Abilities")]
+    public BaseAbility switchAbility;
+    public List<BaseAbility> humanAbilities;
+    public List<BaseAbility> foxAbilities;
+    private List<BaseAbility> currentAbilities;
+
     bool canMove = true;
     // Start is called before the first frame update
 
@@ -44,6 +50,30 @@ public class PlayerController : MonoBehaviour
         movementCollider = GetComponent<Collider2D>();
         inputActions = GetComponent<PlayerInput>();
         pastPos = transform.position;
+
+        switchAbility.Init();
+        foreach (BaseAbility ability in humanAbilities)
+        {
+            ability.Init();
+        }
+        foreach (BaseAbility ability in foxAbilities)
+        {
+            ability.Init();
+        }
+        currentAbilities = humanAbilities;
+    }
+
+    public void Update()
+    {
+        switchAbility.ReduceCooldown();
+        foreach (BaseAbility ability in humanAbilities)
+        {
+            ability.ReduceCooldown();
+        }
+        foreach (BaseAbility ability in foxAbilities)
+        {
+            ability.ReduceCooldown();
+        }
     }
     private void FixedUpdate() {
         if(movementInput != Vector2.zero && canMove){
@@ -90,11 +120,26 @@ public class PlayerController : MonoBehaviour
         movementInput = ctx.ReadValue<Vector2>();
     }
 
+    public List<BaseAbility> GetCurrentAbilities()
+    {
+        return currentAbilities;
+    }
+
+    public BaseAbility GetSwitchAbility()
+    {
+        return switchAbility;
+    }
     public void OnBasicAttack(InputAction.CallbackContext ctx){
         if (canMove && ctx.performed)
         {
             currentAvatar = swapCharacters.getCurrentCharacter();
-            swapCharacters.GetCurrentPersonality().BasicAttack();
+
+            if (!currentAbilities[0].isOnCooldown)
+            {
+                currentAbilities[0].StartCooldown();
+                currentAbilities[0].Use();
+            }
+            
             /*switch (currentAvatar) {
                 case 1:
                     animator.SetTrigger("swordAttack");
@@ -123,7 +168,11 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.performed)
         {
-            swapCharacters.GetCurrentPersonality().SpecialAbility();
+            if (!currentAbilities[1].isOnCooldown)
+            {
+                currentAbilities[1].StartCooldown();
+                currentAbilities[1].Use();
+            }
         }
     }
 
@@ -131,23 +180,26 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.performed)
         {
-            swapCharacters.GetCurrentPersonality().SwitchCharacter();
+            if (!switchAbility.isOnCooldown)
+            {
+                switchAbility.StartCooldown();
+                switchAbility.Use();
+            }
         }
 
     }
 
-    void ThrowFireball(){
-        GameObject fireballPrefab = Resources.Load<GameObject>("Fireball");
-        GameObject fireballInstance = Instantiate(fireballPrefab);
-        // Get the direction that the player is facing
-        Vector2 direction = transform.right;
-        
-        fireballInstance.transform.position = transform.position;
-        fireballInstance.GetComponent<Fireball>().dirRight = dirRight; 
-        fireballInstance.GetComponent<Fireball>().dirUp = dirUp; 
+    public void SwitchAbilities()
+    {
+        if (swapCharacters.getCurrentCharacter() == 2)
+        {
+            currentAbilities = humanAbilities;
+        }
+        else
+        {
+            currentAbilities = foxAbilities;
+        }
     }
-
-
     public void LockMovement(){
         canMove = false;
     }

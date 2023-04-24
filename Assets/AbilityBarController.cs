@@ -5,26 +5,26 @@ using UnityEngine.UI;
 public class AbilityBarController : MonoBehaviour
 {
 
+    [SerializeField]
+    private AbilityUI basicAbility;
+    [SerializeField]
+    private AbilityUI specialAbility;
+    [SerializeField]
+    private AbilityUI switchAbility;
     private List<AbilityUI> abilities;
-    private SwapCharacters player;
+    private PlayerController player;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameManager.Instance.player.GetComponent<SwapCharacters>();
-        abilities = new List<AbilityUI>();
-        foreach (AbilityUI ability in GetComponentsInChildren<AbilityUI>())
-        {
-            abilities.Add(ability);
-        }
-        
+        player = GameManager.Instance.player.GetComponent<PlayerController>();
     }
 
     public void Update()
     {
-        List<Ability> abilitiesData = player.GetCurrentPersonality().GetAbilities();
-        for (int i = 0; i < abilities.Count; i++)
-        {
-            abilities[i].SetFillAmount(abilitiesData[i].GetPercentageLeft());
-        }
+        List<BaseAbility> currentAbilities = player.GetCurrentAbilities();
+        basicAbility.SetFillAmount(currentAbilities[0].GetPercentageLeft());
+        specialAbility.SetFillAmount(currentAbilities[1].GetPercentageLeft());
+
+        switchAbility.SetFillAmount(player.GetSwitchAbility().GetPercentageLeft());
     }
 }

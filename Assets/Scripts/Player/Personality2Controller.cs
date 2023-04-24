@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Personality2Controller : PersonalityController
 {
+    
     public override void BasicAttack()
     {
         if (!basicAttack.OnCooldown())

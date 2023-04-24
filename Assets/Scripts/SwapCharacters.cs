@@ -14,6 +14,7 @@ public class SwapCharacters : MonoBehaviour
 
     private PersonalityController currentAvatar;
     private GameObject timer;
+    private PlayerController playerController;
 
 
     private float timeSpentAvatar1 = 1f;
@@ -34,6 +35,8 @@ public class SwapCharacters : MonoBehaviour
         // animator.runtimeAnimatorController = avatar1Animations as RuntimeAnimatorController;
         currentAvatar = GetComponent<Personality1Controller>();
 
+        playerController = GetComponent<PlayerController>();
+        
 		avatar2.gameObject.SetActive (false);
         maxTime = GetComponent<Timer>().swapTime;
     }
@@ -71,7 +74,7 @@ public class SwapCharacters : MonoBehaviour
     public void SwapCharacter (){
         Timer slider = GetComponent<Timer>();
         slider.resetTimer();
-        
+        playerController.SwitchAbilities();
 
         // processing whichAvatarIsOn variable
         switch (whichAvatarIsOn) {
