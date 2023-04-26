@@ -33,7 +33,7 @@ public class SwapCharacters : MonoBehaviour
         animator.SetBool("isFox", false);
 		avatar1.gameObject.SetActive (true);
         // animator.runtimeAnimatorController = avatar1Animations as RuntimeAnimatorController;
-        currentAvatar = GetComponent<Personality1Controller>();
+        //currentAvatar = GetComponent<Personality1Controller>();
 
         playerController = GetComponent<PlayerController>();
         
@@ -84,11 +84,11 @@ public class SwapCharacters : MonoBehaviour
 
 			        // then the second avatar is on now
 			        whichAvatarIsOn = 2;
-                    currentAvatar = GetComponent<Personality2Controller>();
+                    //currentAvatar = GetComponent<Personality2Controller>();
                 //animator.runtimeAnimatorController = avatar2Animations as RuntimeAnimatorController;
                 // disable the first one and anable the second one
-                    avatar1.gameObject.SetActive (false);
-			        avatar2.gameObject.SetActive (true);
+                    //avatar1.gameObject.SetActive (false);
+			        //avatar2.gameObject.SetActive (true);
 			        break;
 
 		        // if the second avatar is on
@@ -96,11 +96,11 @@ public class SwapCharacters : MonoBehaviour
 
 			        // then the first avatar is on now
 			        whichAvatarIsOn = 1;
-                    currentAvatar = GetComponent<Personality1Controller>();
+                    //currentAvatar = GetComponent<Personality1Controller>();
                 //animator.runtimeAnimatorController = avatar1Animations as RuntimeAnimatorController;
                 // disable the second one and anable the first one
-                avatar1.gameObject.SetActive (true);
-			        avatar2.gameObject.SetActive (false);
+                    //avatar1.gameObject.SetActive (true);
+			        //avatar2.gameObject.SetActive (false);
 			        break;
 		    }
         animator.SetBool("isFox", whichAvatarIsOn == 2);

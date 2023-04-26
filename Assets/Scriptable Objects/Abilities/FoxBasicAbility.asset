@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f20ffd3d56aa945b3632ef653f11aa, type: 3}
   m_Name: FoxBasicAbility
   m_EditorClassIdentifier: 
-  abilityName: 
-  abilityIcon: {fileID: 0}
+  abilityName: Fireball
+  abilityIcon: {fileID: -762886713, guid: abb44620c694af94aaf73c973fce8178, type: 3}
   cooldownTime: 0.2
   isOnCooldown: 0
   damage: 0

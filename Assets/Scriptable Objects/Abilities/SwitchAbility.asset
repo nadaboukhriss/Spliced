@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f17890124f65546ac185f7c8cbe0fb, type: 3}
   m_Name: SwitchAbility
   m_EditorClassIdentifier: 
-  abilityName: 
-  abilityIcon: {fileID: 0}
+  abilityName: Switch
+  abilityIcon: {fileID: -1207130018, guid: abb44620c694af94aaf73c973fce8178, type: 3}
   cooldownTime: 5
   isOnCooldown: 0

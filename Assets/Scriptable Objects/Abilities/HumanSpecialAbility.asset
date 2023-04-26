@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e035117b229eec1499ab991bf11d51ff, type: 3}
   m_Name: HumanSpecialAbility
   m_EditorClassIdentifier: 
-  abilityName: 
-  abilityIcon: {fileID: 0}
+  abilityName: Dash
+  abilityIcon: {fileID: 585981496, guid: abb44620c694af94aaf73c973fce8178, type: 3}
   cooldownTime: 7
   isOnCooldown: 0
   dashDistance: 0

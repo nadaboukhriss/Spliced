@@ -11,7 +11,6 @@ public class AbilityBarController : MonoBehaviour
     private AbilityUI specialAbility;
     [SerializeField]
     private AbilityUI switchAbility;
-    private List<AbilityUI> abilities;
     private PlayerController player;
     // Start is called before the first frame update
     void Start()
@@ -21,10 +20,13 @@ public class AbilityBarController : MonoBehaviour
 
     public void Update()
     {
-        List<BaseAbility> currentAbilities = player.GetCurrentAbilities();
-        basicAbility.SetFillAmount(currentAbilities[0].GetPercentageLeft());
-        specialAbility.SetFillAmount(currentAbilities[1].GetPercentageLeft());
+        basicAbility.SetFillAmount(player.GetBasicAbility().GetPercentageLeft());
+        basicAbility.SetAbilityIcon(player.GetBasicAbility().abilityIcon);
+
+        specialAbility.SetFillAmount(player.GetSpecialAbility().GetPercentageLeft());
+        specialAbility.SetAbilityIcon(player.GetSpecialAbility().abilityIcon);
 
         switchAbility.SetFillAmount(player.GetSwitchAbility().GetPercentageLeft());
+        switchAbility.SetAbilityIcon(player.GetSwitchAbility().abilityIcon);
     }
 }

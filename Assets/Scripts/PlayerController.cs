@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    
+
     public ContactFilter2D movementFilter;
     public GameObject fireballPrefab;
     //public float fireballSpeed = 10f;
@@ -16,9 +16,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float moveSpeed = 1.0f;
     [SerializeField] float collisionOffset = 0.001f;
-    
+
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-    
+
     Rigidbody2D rigidbody2d;
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
@@ -32,11 +32,13 @@ public class PlayerController : MonoBehaviour
     public float dirRight;
     public float dirUp;
 
-    [Header("Abilities")]
+    [Header("Personalities")]
+    public PersonalityController human;
+    public PersonalityController fox;
+
+    private PersonalityController currentShape;
+    [Header("Shared Abilities")]
     public BaseAbility switchAbility;
-    public List<BaseAbility> humanAbilities;
-    public List<BaseAbility> foxAbilities;
-    private List<BaseAbility> currentAbilities;
 
     bool canMove = true;
     // Start is called before the first frame update
@@ -51,29 +53,22 @@ public class PlayerController : MonoBehaviour
         inputActions = GetComponent<PlayerInput>();
         pastPos = transform.position;
 
+        
+    }
+
+    private void Start()
+    {
         switchAbility.Init();
-        foreach (BaseAbility ability in humanAbilities)
-        {
-            ability.Init();
-        }
-        foreach (BaseAbility ability in foxAbilities)
-        {
-            ability.Init();
-        }
-        currentAbilities = humanAbilities;
+        human.Init();
+        fox.Init();
+        currentShape = human;
     }
 
     public void Update()
     {
         switchAbility.ReduceCooldown();
-        foreach (BaseAbility ability in humanAbilities)
-        {
-            ability.ReduceCooldown();
-        }
-        foreach (BaseAbility ability in foxAbilities)
-        {
-            ability.ReduceCooldown();
-        }
+        human.ReduceCooldown();
+        fox.ReduceCooldown();
     }
     private void FixedUpdate() {
         if(movementInput != Vector2.zero && canMove){
@@ -111,7 +106,8 @@ public class PlayerController : MonoBehaviour
         );
 
         if(count == 0){
-            rigidbody2d.MovePosition(rigidbody2d.position + direction*moveSpeed*Time.fixedDeltaTime);
+            //Movement speed is determined based on the current shape of the player.
+            rigidbody2d.MovePosition(rigidbody2d.position + direction*currentShape.moveSpeed*Time.fixedDeltaTime);
             return true;
         }
         return false;
@@ -120,46 +116,28 @@ public class PlayerController : MonoBehaviour
         movementInput = ctx.ReadValue<Vector2>();
     }
 
-    public List<BaseAbility> GetCurrentAbilities()
-    {
-        return currentAbilities;
-    }
-
     public BaseAbility GetSwitchAbility()
     {
         return switchAbility;
     }
+
+    public BaseAbility GetBasicAbility()
+    {
+        return currentShape.basicAbility;
+    }
+
+    public BaseAbility GetSpecialAbility()
+    {
+        return currentShape.specialAbility;
+    }
     public void OnBasicAttack(InputAction.CallbackContext ctx){
         if (canMove && ctx.performed)
         {
-            currentAvatar = swapCharacters.getCurrentCharacter();
-
-            if (!currentAbilities[0].isOnCooldown)
+            if (!currentShape.basicAbility.isOnCooldown)
             {
-                currentAbilities[0].StartCooldown();
-                currentAbilities[0].Use();
+                currentShape.basicAbility.StartCooldown();
+                currentShape.basicAbility.Use();
             }
-            
-            /*switch (currentAvatar) {
-                case 1:
-                    animator.SetTrigger("swordAttack");
-                    LayerMask enemyLayers = LayerMask.GetMask("Enemy");
-                    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 2f, enemyLayers);
-                    foreach (Collider2D ene in hitEnemies) {
-                        print("Hello there enemy!");
-                        GameObject enemyGameObject = ene.gameObject;
-                        Enemy enemyComponent = enemyGameObject.GetComponent<Enemy>();
-                        
-                        if(enemyComponent != null){
-                            enemyComponent.TakeDamage(damage);
-                        }
-                    }
-                    break;
-                case 2:
-                    animator.SetTrigger("swordAttack");
-                    ThrowFireball();
-                    break;
-            }*/
         }
        
     }
@@ -168,10 +146,10 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.performed)
         {
-            if (!currentAbilities[1].isOnCooldown)
+            if (!currentShape.specialAbility.isOnCooldown)
             {
-                currentAbilities[1].StartCooldown();
-                currentAbilities[1].Use();
+                currentShape.specialAbility.StartCooldown();
+                currentShape.specialAbility.Use();
             }
         }
     }
@@ -193,11 +171,12 @@ public class PlayerController : MonoBehaviour
     {
         if (swapCharacters.getCurrentCharacter() == 2)
         {
-            currentAbilities = humanAbilities;
+            //Switch back to human
+            currentShape = human;
         }
         else
         {
-            currentAbilities = foxAbilities;
+            currentShape = fox;
         }
     }
     public void LockMovement(){

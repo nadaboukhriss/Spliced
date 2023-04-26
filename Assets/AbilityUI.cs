@@ -8,9 +8,14 @@ public class AbilityUI : MonoBehaviour
 
     [SerializeField]
     private Image imageCooldown;
-
+    [SerializeField]
+    private Image abilityIcon;
     // Start is called before the first frame update
 
+    public void SetAbilityIcon(Sprite icon)
+    {
+        abilityIcon.sprite = icon;
+    }
     public void SetFillAmount(float value)
     {
         if(value <= 0)

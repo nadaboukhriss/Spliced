@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98ff1ee6db1e854985f9210e61eb8b2, type: 3}
   m_Name: HumanBasicAbility
   m_EditorClassIdentifier: 
-  abilityName: 
-  abilityIcon: {fileID: 0}
+  abilityName: Sword Slash
+  abilityIcon: {fileID: 1280288491, guid: abb44620c694af94aaf73c973fce8178, type: 3}
   cooldownTime: 1
-  isOnCooldown: 1
+  isOnCooldown: 0
   damage: 0

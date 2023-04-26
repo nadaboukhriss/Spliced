@@ -2,57 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PersonalityController : MonoBehaviour
+
+[CreateAssetMenu(fileName = "New PersonalityController", menuName = "Personalities/PersonalityController")]
+public class PersonalityController : ScriptableObject
 {
     [SerializeField]
-    public Ability basicAttack;
+    public BaseAbility basicAbility;
     [SerializeField]
-    public Ability specialAbility;
+    public BaseAbility specialAbility;
     [SerializeField]
-    public Ability switchCharacter;
+    public float moveSpeed = 2f;
 
-    private List<Ability> abilities;
-    protected GameObject player;
-
-    public void Awake()
+    public void Init()
     {
-        abilities = new List<Ability>();
-        abilities.Add(basicAttack);
-        abilities.Add(specialAbility);
-        abilities.Add(switchCharacter);
+        basicAbility.Init();
+        specialAbility.Init();
     }
-    public void Start()
+    public void ReduceCooldown()
     {
-        player = GameManager.Instance.player;
-        
-    }
-    public void SwitchCharacter()
-    {
-        if (!switchCharacter.OnCooldown())
-        {
-            switchCharacter.SetCooldown();
-            player.GetComponent<SwapCharacters>().SwapCharacter();
-        }
-        
-    }
-    public abstract void BasicAttack();
-    public abstract void SpecialAbility();
-
-    protected void DecreaseCooldowns()
-    {
-        basicAttack.DecreaseCooldown();
-        specialAbility.DecreaseCooldown();
-        switchCharacter.DecreaseCooldown();
-    }
-
-    public List<Ability> GetAbilities()
-    {
-        return abilities;
-    }
-
-    public void Update()
-    {
-        DecreaseCooldowns();
+        basicAbility.ReduceCooldown();
+        specialAbility.ReduceCooldown();
     }
 
 }

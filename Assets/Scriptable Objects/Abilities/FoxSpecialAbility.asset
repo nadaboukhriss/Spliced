@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9789871f83818824dbbe5046191e723a, type: 3}
   m_Name: FoxSpecialAbility
   m_EditorClassIdentifier: 
-  abilityName: 
-  abilityIcon: {fileID: 0}
+  abilityName: Heal
+  abilityIcon: {fileID: -1665177832, guid: abb44620c694af94aaf73c973fce8178, type: 3}
   cooldownTime: 5
   isOnCooldown: 0
   healAmount: 0
