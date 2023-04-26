@@ -16,4 +16,4 @@ MonoBehaviour:
   abilityIcon: {fileID: -1665177832, guid: abb44620c694af94aaf73c973fce8178, type: 3}
   cooldownTime: 5
   isOnCooldown: 0
-  healAmount: 0
+  healAmount: 5

@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSpecialAttack(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        if (canMove && ctx.performed)
         {
             if (!currentShape.specialAbility.isOnCooldown)
             {

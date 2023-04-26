@@ -6,10 +6,11 @@ using UnityEngine;
 public class FoxSpecialAbility : BaseAbility
 {
     [SerializeField]
-    private float healAmount;
+    private int healAmount;
     public override void Use()
     {
         StartCooldown();
-        Debug.Log("Fox using special ability, healing "+ healAmount);
+        player.Heal(healAmount);
+        //Debug.Log("Fox using special ability, healing "+ healAmount);
     }
 }

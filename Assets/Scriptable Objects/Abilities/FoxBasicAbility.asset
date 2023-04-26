@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Fireball
   abilityIcon: {fileID: -762886713, guid: abb44620c694af94aaf73c973fce8178, type: 3}
-  cooldownTime: 0.2
+  cooldownTime: 0.3
   isOnCooldown: 0
   damage: 0

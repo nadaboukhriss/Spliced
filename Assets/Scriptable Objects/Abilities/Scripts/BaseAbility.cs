@@ -10,11 +10,13 @@ public abstract class BaseAbility : ScriptableObject
     public bool isOnCooldown;
 
     protected float currentCooldown;
-    protected GameObject player;
+    protected PlayerController playerController;
+    protected Player player;
     // Start is called before the first frame update
     public void Init()
     {
-        player = GameManager.Instance.player;
+        player = GameManager.Instance.player.GetComponent<Player>();
+        playerController = GameManager.Instance.player.GetComponent<PlayerController>();
         isOnCooldown = false;
         currentCooldown = 0;
     }

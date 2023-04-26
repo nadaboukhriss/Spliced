@@ -23,8 +23,8 @@ public class Fireball : MonoBehaviour
         timeAlive += Time.deltaTime;
         // Move the fireball upwards
         transform.Translate((dirRight * transform.right+ dirUp*Vector3.up) * speed * Time.deltaTime);
-        // Destroy the fireball when it goes off-screen
-        if (transform.position.y > 10f || timeAlive > maxTimeAlive)
+        // Destroy the fireball when it goes off-screen transform.position.y > 10f || (did not work)
+        if (timeAlive > maxTimeAlive)
         {
             Destroy(gameObject);
         }

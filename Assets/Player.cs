@@ -47,5 +47,15 @@ public class Player : MonoBehaviour
         healthBar.SetHealth(health);
     }
 
+    public void Heal(int amount)
+    {
+        health += amount;
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        healthBar.SetHealth(health);
+    }
+
 
 }
