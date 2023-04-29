@@ -3,24 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Ability
+public abstract class Ability : MonoBehaviour
 {
-    [SerializeField]
-    private float maxCooldown = 0f;
+    public float abilityCooldown = 0f;
+    public Sprite abilityIcon;
 
     private float currentCooldown;
-    private float damage;
+
+    private Player player;
+    private PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameManager.Instance.player.GetComponent<Player>();
+        playerController = GameManager.Instance.player.GetComponent<PlayerController>();
     }
-
-    public float GetDamage()
-    {
-        return damage;
-    }
-    // Update is called once per frame
     public void DecreaseCooldown()
     {
         if (currentCooldown > 0f)
@@ -35,7 +32,7 @@ public class Ability
 
     public void SetCooldown()
     {
-        currentCooldown = maxCooldown;
+        currentCooldown = abilityCooldown;
     }
 
     public float GetCurrentCooldown()
@@ -44,14 +41,14 @@ public class Ability
     }
     public float GetMaxCooldown()
     {
-        return maxCooldown;
+        return abilityCooldown;
     }
 
     public float GetPercentageLeft()
     {
-        if(maxCooldown > 0)
+        if(abilityCooldown > 0)
         {
-            return currentCooldown / maxCooldown;
+            return currentCooldown / abilityCooldown;
         }
         return 0;
         

@@ -12,7 +12,7 @@ public class SwapCharacters : MonoBehaviour
     private TimeDial clock;
     private Animator animator;
 
-    private PersonalityController currentAvatar;
+    private PersonalityController2 currentAvatar;
     private GameObject timer;
     private PlayerController playerController;
 
@@ -106,7 +106,7 @@ public class SwapCharacters : MonoBehaviour
         animator.SetBool("isFox", whichAvatarIsOn == 2);
     }
 
-    public PersonalityController GetCurrentPersonality()
+    public PersonalityController2 GetCurrentPersonality()
     {
         return currentAvatar;
     }

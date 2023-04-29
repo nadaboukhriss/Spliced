@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 1281071596595636608}
   - component: {fileID: 1954888701575187173}
   - component: {fileID: 7539757413904643038}
-  m_Layer: 0
+  - component: {fileID: -1375412615970847198}
+  - component: {fileID: 8364548305103276386}
+  m_Layer: 12
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,10 +74,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 6f50ba21c8ebb22439f803cfffc1090f, type: 3}
+  m_SortingLayerID: 440385903
+  m_SortingLayer: 2
+  m_SortingOrder: 6
+  m_Sprite: {fileID: -1105653451, guid: 49240897fcb1a444f807a8a3475457a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,10 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9107d78713fb4749a82d2e729f21659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 40
   dirRight: 0
   dirUp: 0
   maxTimeAlive: 20
+  travelDirection: {x: 0, y: 0}
 --- !u!58 &7539757413904643038
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,6 +118,47 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.17996882, y: -0.099397734}
+  m_Offset: {x: 0.027610464, y: -0.00004120815}
   serializedVersion: 2
-  m_Radius: 0.3134517
+  m_Radius: 0.31383038
+--- !u!95 &-1375412615970847198
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105277328274714729}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa22e36ba04578a48a714df3a470462b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &8364548305103276386
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105277328274714729}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

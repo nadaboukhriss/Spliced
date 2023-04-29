@@ -19,28 +19,35 @@ public class PlayerController : MonoBehaviour
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
-    Rigidbody2D rigidbody2d;
+    public Rigidbody2D rigidbody2d;
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     Animator animator;
     Collider2D movementCollider;
     PlayerInput inputActions;
-    private int currentAvatar;
-
     SwapCharacters swapCharacters;
+
+    private int currentAvatar;
+    private Vector2 lastMovementInput = Vector2.zero;
+    
 
     public float dirRight;
     public float dirUp;
 
     [Header("Personalities")]
-    public PersonalityController human;
-    public PersonalityController fox;
+    public PersonalityController2 human;
+    public PersonalityController2 fox;
+    [SerializeField]
+    private Transform fireballSpawnPoint;
 
-    private PersonalityController currentShape;
+    private PersonalityController2 currentShape;
     [Header("Shared Abilities")]
-    public BaseAbility switchAbility;
+    [SerializeField]
+    public AbilityBase switchAbility;
 
     bool canMove = true;
+
+    bool boosting = false;
     // Start is called before the first frame update
 
     private void Awake()
@@ -51,16 +58,11 @@ public class PlayerController : MonoBehaviour
         swapCharacters = GetComponent<SwapCharacters>();
         movementCollider = GetComponent<Collider2D>();
         inputActions = GetComponent<PlayerInput>();
-        pastPos = transform.position;
-
-        
+        pastPos = transform.position;   
     }
 
     private void Start()
     {
-        switchAbility.Init();
-        human.Init();
-        fox.Init();
         currentShape = human;
     }
 
@@ -69,12 +71,52 @@ public class PlayerController : MonoBehaviour
         switchAbility.ReduceCooldown();
         human.ReduceCooldown();
         fox.ReduceCooldown();
+
+        /*if (Input.GetKeyDown(KeyCode.LeftShift) && !boosting)
+        {
+            Debug.Log("boost");
+            boosting = true;
+            rigidbody2d.velocity = lastMovementInput.normalized * 15;
+            Invoke(nameof(StopDash), 0.15f);
+            //StartCoroutine(BoostMovementSpeedForDuration(0.15f));
+        }
+        */
     }
+
+    public Vector2 GetLastOrientering()
+    {
+        return lastMovementInput;
+    }
+    public void SetVelocity(Vector2 vec)
+    {
+        rigidbody2d.velocity = vec;
+    }
+
+    private void SetFalse()
+    {
+        boosting = false;
+    }
+    public void SetBoosting(bool arg)
+    {
+        boosting = arg;
+    }
+
+
     private void FixedUpdate() {
+        if (rigidbody2d.IsTouchingLayers())
+        {
+
+            animator.SetBool("isWalking", false);
+            rigidbody2d.velocity = Vector2.zero;
+        }
+        if (boosting) return;
         if(movementInput != Vector2.zero && canMove){
             animator.SetFloat("XInput", movementInput.x);
             animator.SetFloat("YInput", movementInput.y);
-            bool success = TryMove(movementInput);
+            rigidbody2d.velocity = movementInput.normalized * currentShape.moveSpeed;
+            lastMovementInput = movementInput;
+            animator.SetBool("isWalking", true);
+            /*bool success = TryMove(movementInput);
             if(!success && movementInput.x != 0)
             {
                 success = TryMove(new Vector2(movementInput.x,0));
@@ -83,22 +125,28 @@ public class PlayerController : MonoBehaviour
             {
                 success = TryMove(new Vector2(0,movementInput.y));
             }
-            animator.SetBool("isWalking", success);
-            
+            animator.SetBool("isWalking", success);*/
+
 
             dirRight = movementInput.x != 0 ? Mathf.Sign(movementInput.x) : 0;
             dirUp = movementInput.y != 0 ? Mathf.Sign(movementInput.y) : 0;
             
 
         }else{
+            rigidbody2d.velocity = Vector2.zero;
             animator.SetBool("isWalking", false);
         }
-        
+
+        if (rigidbody2d.IsTouchingLayers())
+        {
+            animator.SetBool("isWalking", false);
+        }
+
         pastPos = transform.position;
     }
 
     private bool TryMove(Vector2 direction){
-        int count = movementCollider.Cast(
+        /*int count = movementCollider.Cast(
             direction,
             movementFilter,
             castCollisions,
@@ -109,47 +157,80 @@ public class PlayerController : MonoBehaviour
             //Movement speed is determined based on the current shape of the player.
             rigidbody2d.MovePosition(rigidbody2d.position + direction*currentShape.moveSpeed*Time.fixedDeltaTime);
             return true;
-        }
-        return false;
+        }*/
+        
+        
+        
+        return true;
     }
     public void OnMove(InputAction.CallbackContext ctx){
         movementInput = ctx.ReadValue<Vector2>();
     }
 
-    public BaseAbility GetSwitchAbility()
+    public AbilityBase GetSwitchAbility()
     {
         return switchAbility;
     }
 
-    public BaseAbility GetBasicAbility()
+    public AbilityBase GetBasicAbility()
     {
         return currentShape.basicAbility;
     }
 
-    public BaseAbility GetSpecialAbility()
+    public AbilityBase GetSpecialAbility()
     {
         return currentShape.specialAbility;
     }
     public void OnBasicAttack(InputAction.CallbackContext ctx){
         if (canMove && ctx.performed)
         {
-            if (!currentShape.basicAbility.isOnCooldown)
+            if (currentShape.basicAbility.IsReady())
             {
-                currentShape.basicAbility.StartCooldown();
-                currentShape.basicAbility.Use();
+                LockMovement();
+                animator.SetTrigger("basicAbility");
+                currentShape.basicAbility.Activate();
             }
         }
-       
+    }
+
+    //My attempt to create a nice layout failed, seems that a better approach is doing it through the animator
+    public void FireBallAttack()
+    {
+        UnlockMovement();
+        GameObject fireballPrefab = Resources.Load<GameObject>("Fireball");
+        GameObject fireballInstance = Instantiate(fireballPrefab);
+
+        //Vector3 mousePos = Mouse.current.position.ReadValue();
+        //Vector3 target_direction = (mousePos - fireballSpawnPoint.position).normalized;
+        //Quaternion rotation = Quaternion.LookRotation(target_direction);
+
+        Vector2 direction = transform.right;
+
+
+        Vector3 pos = fireballSpawnPoint.position;
+        fireballInstance.transform.position = pos;
+        
+        fireballInstance.GetComponent<Fireball>().travelDirection = lastMovementInput;
+        fireballInstance.GetComponent<Fireball>().dirUp = dirUp;
+    }
+
+    public void DashAbility()
+    {
+        Debug.Log("Start dashing");
+    }
+
+    public void HealAbility()
+    {
+        Debug.Log("Fox heal ");
     }
 
     public void OnSpecialAttack(InputAction.CallbackContext ctx)
     {
         if (canMove && ctx.performed)
         {
-            if (!currentShape.specialAbility.isOnCooldown)
+            if (currentShape.specialAbility.IsReady())
             {
-                currentShape.specialAbility.StartCooldown();
-                currentShape.specialAbility.Use();
+                currentShape.SpecialAbility();
             }
         }
     }
@@ -158,10 +239,10 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.performed)
         {
-            if (!switchAbility.isOnCooldown)
+            if (switchAbility.IsReady())
             {
-                switchAbility.StartCooldown();
-                switchAbility.Use();
+                switchAbility.Activate();
+                swapCharacters.SwapCharacter();
             }
         }
 

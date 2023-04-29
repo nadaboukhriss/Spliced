@@ -34,7 +34,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: swordAttack
+    m_ConditionEvent: basicAbility
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5505210267872627624}
@@ -128,7 +128,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: swordAttack
+    m_ConditionEvent: basicAbility
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5505210267872627624}
@@ -182,7 +182,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: dd6d62eda76fb6d4dad2ee05638432d6, type: 2}
+    m_Motion: {fileID: 7400000, guid: 418ee83179a549e40ac2a9bb73f08fa4, type: 2}
     m_Threshold: 0
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -190,7 +190,7 @@ BlendTree:
     m_DirectBlendParameter: XInput
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 3a1c6fafa98d5b6488b14475ce210c49, type: 2}
+    m_Motion: {fileID: 7400000, guid: d9ef96b1b2dba7941bcefeed72893b1c, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
@@ -198,7 +198,7 @@ BlendTree:
     m_DirectBlendParameter: XInput
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 74cea85819e34ee4f8d2568397cd5308, type: 2}
+    m_Motion: {fileID: 7400000, guid: 615492d67f10aa547bd0833bd409636b, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -206,7 +206,7 @@ BlendTree:
     m_DirectBlendParameter: XInput
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: d36c39ec48f9aa94ca21c22dbce1820a, type: 2}
+    m_Motion: {fileID: 7400000, guid: f1cba97b5ab14b44aabd7669016dcc0c, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -453,7 +453,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: swordAttack
+    m_ConditionEvent: basicAbility
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1034604513817634730}
@@ -598,7 +598,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: swordAttack
+    m_ConditionEvent: basicAbility
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1034604513817634730}
@@ -635,7 +635,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: swordAttack
+  - m_Name: basicAbility
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -646,13 +646,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isFox
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Player1

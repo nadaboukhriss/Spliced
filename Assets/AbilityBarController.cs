@@ -20,13 +20,13 @@ public class AbilityBarController : MonoBehaviour
 
     public void Update()
     {
-        basicAbility.SetFillAmount(player.GetBasicAbility().GetPercentageLeft());
+        basicAbility.SetFillAmount(player.GetBasicAbility().GetCooldownFraction());
         basicAbility.SetAbilityIcon(player.GetBasicAbility().abilityIcon);
 
-        specialAbility.SetFillAmount(player.GetSpecialAbility().GetPercentageLeft());
+        specialAbility.SetFillAmount(player.GetSpecialAbility().GetCooldownFraction());
         specialAbility.SetAbilityIcon(player.GetSpecialAbility().abilityIcon);
 
-        switchAbility.SetFillAmount(player.GetSwitchAbility().GetPercentageLeft());
+        switchAbility.SetFillAmount(player.GetSwitchAbility().GetCooldownFraction());
         switchAbility.SetAbilityIcon(player.GetSwitchAbility().abilityIcon);
     }
 }
