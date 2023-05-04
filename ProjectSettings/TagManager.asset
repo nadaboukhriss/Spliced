@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Enemy
   - Hurtbox
   - Hitbox
-  - 
-  - 
+  - Collectable
+  - Projectile
   - 
   - 
   - 
@@ -44,4 +45,7 @@ TagManager:
     locked: 0
   - name: New Layer 1
     uniqueID: 2862409487
+    locked: 0
+  - name: Objects
+    uniqueID: 440385903
     locked: 0
