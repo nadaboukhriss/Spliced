@@ -456,7 +456,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  fireballPrefab: {fileID: 0}
+  fireballPrefab: {fileID: 105277328274714729, guid: 0cac7ee49ac83cf499684cc4fbf2b278, type: 3}
   moveSpeed: 6
   collisionOffset: 0.001
   rigidbody2d: {fileID: 0}
@@ -567,14 +567,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   basicAbility:
-    abilityIcon: {fileID: 140401158, guid: adf6aee70e84fae4da46716e205838fb, type: 3}
-    cooldown: 1
+    abilityIcon: {fileID: 21300000, guid: ae7b179dea26257418ade37ec6bb04d9, type: 3}
+    cooldown: 0.5
   specialAbility:
-    abilityIcon: {fileID: 244711416, guid: abb44620c694af94aaf73c973fce8178, type: 3}
+    abilityIcon: {fileID: 21300000, guid: 214508edb3f5834459f0105383248dd4, type: 3}
     cooldown: 5
   fireballDamage: 5
   healAmount: 5
-  healScript: {fileID: 0}
+  healScript: {fileID: 5407646827554350573}
 --- !u!114 &2652789479675940328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,8 +589,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   basicAbility:
-    abilityIcon: {fileID: 1572779686, guid: abb44620c694af94aaf73c973fce8178, type: 3}
-    cooldown: 2
+    abilityIcon: {fileID: 21300000, guid: 718f70c1760708644bc5732cdb0ec60f, type: 3}
+    cooldown: 0.1
   specialAbility:
     abilityIcon: {fileID: 1633311314, guid: abb44620c694af94aaf73c973fce8178, type: 3}
     cooldown: 1
@@ -624,7 +624,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2665468015319862254}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01999998, y: 1.1560001, z: 0.06096826}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []

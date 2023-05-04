@@ -10,7 +10,7 @@ public class TabGroup : MonoBehaviour
     private int defaultTab;
 
     [SerializeField]
-    private List<TabButton> tabButtons = new List<TabButton>();
+    private List<MenuTabButton> tabButtons = new List<MenuTabButton>();
 
     [SerializeField]
     private List<GameObject> pagesToSwap = new List<GameObject>();
@@ -21,6 +21,13 @@ public class TabGroup : MonoBehaviour
     private Sprite hoverSprite;
     [SerializeField]
     private Sprite activeSprite;
+
+    [SerializeField]
+    private Color idleColor;
+    [SerializeField]
+    private Color hoverColor;
+    [SerializeField]
+    private Color activeColor;
 
 
     private int currentTab;
@@ -33,15 +40,16 @@ public class TabGroup : MonoBehaviour
     {
         OnTabSelected(tabButtons[defaultTab]);
     }
-    public void OnTabEnter(TabButton button)
+    public void OnTabEnter(MenuTabButton button)
     {
         ResetTabs();
         int index = button.transform.GetSiblingIndex();
         if (index != currentTab) {
-            button.background.sprite = hoverSprite;
+            //button.background.sprite = hoverSprite;
+            button.background.color = hoverColor;
         }
     }
-    public void OnTabExit(TabButton button)
+    public void OnTabExit(MenuTabButton button)
     {
         ResetTabs();
     }
@@ -56,7 +64,7 @@ public class TabGroup : MonoBehaviour
         int newIndex = ((currentTab - 1) + tabButtons.Count) % tabButtons.Count;
         OnTabSelected(tabButtons[newIndex]);
     }
-    public void OnTabSelected(TabButton button)
+    public void OnTabSelected(MenuTabButton button)
     {
         if(tabButtons[currentTab] != null)
         {
@@ -66,10 +74,12 @@ public class TabGroup : MonoBehaviour
         currentTab = index;
         button.Select();
         ResetTabs();
-        button.background.sprite = activeSprite;
+        //button.background.sprite = activeSprite;
+        button.background.color = activeColor;
 
-        
-        for(int i = 0; i < pagesToSwap.Count; i++)
+
+
+        for (int i = 0; i < pagesToSwap.Count; i++)
         {
             if(i == currentTab)
             {
@@ -84,10 +94,10 @@ public class TabGroup : MonoBehaviour
 
     public void ResetTabs()
     {
-        foreach (TabButton button in tabButtons)
+        foreach (MenuTabButton button in tabButtons)
         {
             if (tabButtons[currentTab] != null && button == tabButtons[currentTab]) { continue; }
-            button.GetComponent<Image>().sprite = idleSprite;
+            button.GetComponent<Image>().color = idleColor;
         }
     }
 
