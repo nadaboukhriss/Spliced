@@ -48,6 +48,8 @@ public class EnemyAIAstar : MonoBehaviour
     private bool isAlive = true;
     private Enemy enemy;
 
+    private bool canMove = true;
+
     
     // Start is called before the first frame update
     void Start()
@@ -128,7 +130,7 @@ public class EnemyAIAstar : MonoBehaviour
         }
         return false;
     }
-    private void Update()
+    public void Update()
     {
         if(state == EnemyState.Dead)
         {
@@ -141,7 +143,8 @@ public class EnemyAIAstar : MonoBehaviour
         {
             currentCooldown = 0;
         }
-        
+
+        Debug.Log(state + " " + CanSeeTarget().ToString());
         // Check if we are in range of attacking the player
         if (InRangeOfAttack()){
             state = EnemyState.Attacking;
@@ -154,8 +157,9 @@ public class EnemyAIAstar : MonoBehaviour
                 currentCooldown = attackCooldown;
                 animator.SetTrigger("Attack");
             }
-        }else if(CanSeeTarget() || keepingTrackOfTarget)
+        }else if(CanSeeTarget())
         {
+            Debug.Log("Setting as walking");
             state = EnemyState.Walking;
         }
         else
@@ -175,7 +179,7 @@ public class EnemyAIAstar : MonoBehaviour
             return;
         }
 
-        if(state == EnemyState.Walking)
+        if(state == EnemyState.Walking && canMove)
         {
             Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rigidbody2d.position).normalized;
             Debug.Log("Has a path to follow");
@@ -183,7 +187,6 @@ public class EnemyAIAstar : MonoBehaviour
             animator.SetFloat("XInput", direction.x);
             animator.SetFloat("YInput", direction.y);
             rigidbody2d.velocity = direction * speed;
-            state = EnemyState.Walking;
 
             float distance = Vector2.Distance(rigidbody2d.position, path.vectorPath[currentWaypoint]);
             if(distance < nextWaypointDistance)
@@ -207,6 +210,15 @@ public class EnemyAIAstar : MonoBehaviour
     public void SetState(EnemyState state)
     {
         this.state = state;
+    }
+
+    public void LockMovement()
+    {
+        canMove = false;
+    }
+    public void UnlockMovement()
+    {
+        canMove = true;
     }
 
 }
