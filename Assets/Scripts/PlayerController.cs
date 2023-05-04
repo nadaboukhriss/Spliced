@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     bool boosting = false;
     // Start is called before the first frame update
 
+    private bool launchedFireBall = false;
     private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -101,14 +102,18 @@ public class PlayerController : MonoBehaviour
         boosting = arg;
     }
 
+    public void LateUpdate()
+    {
+        launchedFireBall = false;
+    }
 
     private void FixedUpdate() {
-        if (rigidbody2d.IsTouchingLayers())
+        /*if (rigidbody2d.IsTouchingLayers())
         {
 
             animator.SetBool("isWalking", false);
             rigidbody2d.velocity = Vector2.zero;
-        }
+        }*/
         if (boosting) return;
         if(movementInput != Vector2.zero && canMove){
             animator.SetFloat("XInput", movementInput.x);
@@ -137,10 +142,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
 
-        if (rigidbody2d.IsTouchingLayers())
-        {
-            animator.SetBool("isWalking", false);
-        }
+        
 
         pastPos = transform.position;
     }
@@ -182,35 +184,45 @@ public class PlayerController : MonoBehaviour
         return currentShape.specialAbility;
     }
     public void OnBasicAttack(InputAction.CallbackContext ctx){
-        if (canMove && ctx.performed)
+        if (canMove && ctx.started)
         {
             if (currentShape.basicAbility.IsReady())
             {
-                LockMovement();
-                animator.SetTrigger("basicAbility");
                 currentShape.basicAbility.Activate();
+                LockMovement();
+                Vector3 mousePos = GameManager.Instance.mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 target_direction = (mousePos - fireballSpawnPoint.position);
+                Vector3 direction = new Vector2(target_direction.x, target_direction.y).normalized;
+                animator.SetFloat("XAttack", direction.x);
+                animator.SetFloat("YAttack", direction.y);
+                animator.SetTrigger("basicAbility");
+                
             }
         }
     }
 
     //My attempt to create a nice layout failed, seems that a better approach is doing it through the animator
-    public void FireBallAttack()
+    public void FireBallAttack(AnimationEvent evt)
     {
+        if (launchedFireBall) return;
+
+        launchedFireBall = true;
         UnlockMovement();
         GameObject fireballPrefab = Resources.Load<GameObject>("Fireball");
         GameObject fireballInstance = Instantiate(fireballPrefab);
 
-        //Vector3 mousePos = Mouse.current.position.ReadValue();
-        //Vector3 target_direction = (mousePos - fireballSpawnPoint.position).normalized;
-        //Quaternion rotation = Quaternion.LookRotation(target_direction);
+        Vector3 mousePos = GameManager.Instance.mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 target_direction = new Vector2(animator.GetFloat("XAttack"),animator.GetFloat("YAttack"));// (mousePos - fireballSpawnPoint.position).normalized;
+        float rotZ = Mathf.Atan2(target_direction.y, target_direction.x) * Mathf.Rad2Deg;
 
         Vector2 direction = transform.right;
 
 
         Vector3 pos = fireballSpawnPoint.position;
         fireballInstance.transform.position = pos;
+        fireballInstance.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
         
-        fireballInstance.GetComponent<Fireball>().travelDirection = lastMovementInput;
+        fireballInstance.GetComponent<Fireball>().travelDirection = target_direction;
         fireballInstance.GetComponent<Fireball>().dirUp = dirUp;
     }
 
@@ -221,7 +233,7 @@ public class PlayerController : MonoBehaviour
 
     public void HealAbility()
     {
-        Debug.Log("Fox heal ");
+        
     }
 
     public void OnSpecialAttack(InputAction.CallbackContext ctx)

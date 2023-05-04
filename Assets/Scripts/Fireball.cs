@@ -20,8 +20,8 @@ public class Fireball : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
-        animator.SetFloat("XInput", travelDirection.x);
-        animator.SetFloat("YInput", travelDirection.y);
+        animator.SetFloat("XInput", 1);
+        animator.SetFloat("YInput", 0);
         isDead = false;
         
     }
@@ -51,13 +51,13 @@ public class Fireball : MonoBehaviour
     {
         if (isDead) return;
         // Destroy the fireball if it hits an enemy or other obstacle
-        if (other.CompareTag("Enemy") || (rigidbody2d.IsTouchingLayers() && !other.CompareTag("Player")))
+        if (other.CompareTag("Enemy") || (other.CompareTag("Obstacle")))
         {
             Debug.Log("Fireball hit!");
-            Enemy enemy = other.GetComponent<Enemy>();
+            Enemy enemy = other.GetComponentInParent<Enemy>();
             if (enemy)
             {
-                enemy.TakeDamage(2);
+                enemy.TakeDamage(5);
             }
             PlayExplosion();
         }

@@ -8,26 +8,22 @@ public class FoxController : PersonalityController2
     [SerializeField]
     private float fireballDamage;
 
+    
+
     [Header("Healing")]
     [SerializeField]
     private int healAmount;
+    [SerializeField]
+    private HealAnimation healScript;
     public override void BasicAbility()
     {
-        Debug.Log("Fox basic ability");
         basicAbility.Activate();
-        GameObject fireballPrefab = Resources.Load<GameObject>("Fireball");
-        GameObject fireballInstance = Instantiate(fireballPrefab);
-        // Get the direction that the player is facing
-        Vector2 direction = player.transform.right;
-
-        fireballInstance.transform.position = player.transform.position;
-        fireballInstance.GetComponent<Fireball>().dirRight = player.GetComponent<PlayerController>().dirRight;
-        fireballInstance.GetComponent<Fireball>().dirUp = player.GetComponent<PlayerController>().dirUp;
     }
 
     public override void SpecialAbility()
     {
         specialAbility.Activate();
-        player.Heal(healAmount);
+        healScript.Activate();
+        
     }
 }
