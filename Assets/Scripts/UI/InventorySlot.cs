@@ -18,7 +18,7 @@ public class InventorySlot : MonoBehaviour
     public void Setup(ItemObject item)
     {
         itemIcon.sprite = item.icon;
-        itemName.text = item.itemName;
-        itemDescription.text = item.description;
+        //itemName.text = item.itemName;
+        //itemDescription.text = item.description;
     }
 }

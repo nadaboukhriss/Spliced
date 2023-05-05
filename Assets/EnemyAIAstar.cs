@@ -49,7 +49,7 @@ public class EnemyAIAstar : MonoBehaviour
     private Enemy enemy;
 
     private bool canMove = true;
-
+    private float lastSeenTarget = Mathf.NegativeInfinity;
     
     // Start is called before the first frame update
     void Start()
@@ -75,16 +75,8 @@ public class EnemyAIAstar : MonoBehaviour
     {
         if (!seeker.IsDone() || state == EnemyState.Attacking) return;
 
-        // If we are currently keeping track of the target, then we should update the path to the target
-        if (keepingTrackOfTarget)
-        {
-            seeker.StartPath(rigidbody2d.position, target.position, OnPathComplete);
-            return;
-        }
-        
         if(state == EnemyState.Walking)
         {
-            keepingTrackOfTarget = true;
             seeker.StartPath(rigidbody2d.position, target.position, OnPathComplete);
         }else{
             //Can't see the target, start moving back to the start position
@@ -124,6 +116,7 @@ public class EnemyAIAstar : MonoBehaviour
                 Player player = hit.collider.gameObject.GetComponent<Player>();
                 if (player)
                 {
+                    keepingTrackOfTarget = true;
                     return true;
                 }
             }
@@ -144,7 +137,8 @@ public class EnemyAIAstar : MonoBehaviour
             currentCooldown = 0;
         }
 
-        Debug.Log(state + " " + CanSeeTarget().ToString());
+
+        bool canSeeTarget = CanSeeTarget();
         // Check if we are in range of attacking the player
         if (InRangeOfAttack()){
             state = EnemyState.Attacking;
@@ -157,9 +151,9 @@ public class EnemyAIAstar : MonoBehaviour
                 currentCooldown = attackCooldown;
                 animator.SetTrigger("Attack");
             }
-        }else if(CanSeeTarget())
+        }else if(canSeeTarget || Time.time - lastSeenTarget < rememberTargetTime)
         {
-            Debug.Log("Setting as walking");
+            lastSeenTarget = Time.time;
             state = EnemyState.Walking;
         }
         else

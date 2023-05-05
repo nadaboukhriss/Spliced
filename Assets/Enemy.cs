@@ -53,6 +53,11 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public float GetDamage()
+    {
+        return damage;
+    }
+
     protected virtual void Attack()
     {
         

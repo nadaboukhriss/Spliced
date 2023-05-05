@@ -14,10 +14,10 @@ public class Hurtbox : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         print("enter");
-        Enemy enemy = collision.GetComponent<Enemy>();
+        Enemy enemy = collision.GetComponentInParent<Enemy>();
         if (enemy)
         {
-            player.TakeDamage(10);
+            player.TakeDamage((int)enemy.GetDamage());
         }
     }
 }
