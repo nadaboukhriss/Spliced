@@ -707,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9fddfbf2fa3de4fa302ea0b9b4491c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneIndex: 0
+  gameSceneIndex: 1
 --- !u!224 &444117500 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4457426803783556164, guid: 75ca1389a8de2cc4dbb2779ff450768f, type: 3}
@@ -1468,7 +1468,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fillipa, Maria, Nicklas, Bernhard
+  m_text: Fillipa, Maria, Niklas, Bernhard
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
