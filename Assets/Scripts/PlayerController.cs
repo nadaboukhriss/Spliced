@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         if(movementInput != Vector2.zero && canMove){
             animator.SetFloat("XInput", movementInput.x);
             animator.SetFloat("YInput", movementInput.y);
-            rigidbody2d.velocity = movementInput.normalized * currentShape.moveSpeed;
+            rigidbody2d.AddForce(movementInput.normalized * currentShape.moveSpeed*100 * Time.deltaTime);
             lastMovementInput = movementInput;
             animator.SetBool("isWalking", true);
             /*bool success = TryMove(movementInput);

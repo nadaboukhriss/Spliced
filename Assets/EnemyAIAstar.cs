@@ -50,6 +50,7 @@ public class EnemyAIAstar : MonoBehaviour
 
     private bool canMove = true;
     private float lastSeenTarget = Mathf.NegativeInfinity;
+    private Vector2 movementDirection = Vector2.zero;
     
     // Start is called before the first frame update
     void Start()
@@ -137,6 +138,7 @@ public class EnemyAIAstar : MonoBehaviour
             currentCooldown = 0;
         }
 
+        Debug.Log(animator.GetFloat("XInput").ToString() + " " + animator.GetFloat("YInput"));
 
         bool canSeeTarget = CanSeeTarget();
         // Check if we are in range of attacking the player
@@ -145,7 +147,9 @@ public class EnemyAIAstar : MonoBehaviour
             path = null; //Remove the path we are walking
             if (currentCooldown <= 0)
             {
-                Vector2 direction = (target.position - transform.position).normalized;
+                Vector2 direction = ((Vector2)(target.position - transform.position)).normalized;
+
+                Debug.Log("Attack direction: " + direction);
                 animator.SetFloat("XInput", direction.x);
                 animator.SetFloat("YInput", direction.y);
                 currentCooldown = attackCooldown;
@@ -166,7 +170,7 @@ public class EnemyAIAstar : MonoBehaviour
     {
         if (path == null || currentWaypoint >= path.vectorPath.Count)
         {
-            rigidbody2d.velocity = Vector2.zero;
+            //rigidbody2d.velocity = Vector2.zero;
             animator.SetBool("isWalking", false);
             state = EnemyState.Idle;
             reachedEndOfPath = true;
@@ -175,12 +179,14 @@ public class EnemyAIAstar : MonoBehaviour
 
         if(state == EnemyState.Walking && canMove)
         {
-            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rigidbody2d.position).normalized;
-            Debug.Log("Has a path to follow");
+
+            movementDirection = ((Vector2)path.vectorPath[currentWaypoint] - rigidbody2d.position).normalized;
+            rigidbody2d.AddForce(movementDirection * speed*Time.deltaTime);
+            
             animator.SetBool("isWalking", true);
-            animator.SetFloat("XInput", direction.x);
-            animator.SetFloat("YInput", direction.y);
-            rigidbody2d.velocity = direction * speed;
+
+            animator.SetFloat("XInput", movementDirection.x);
+            animator.SetFloat("YInput", movementDirection.y);
 
             float distance = Vector2.Distance(rigidbody2d.position, path.vectorPath[currentWaypoint]);
             if(distance < nextWaypointDistance)
