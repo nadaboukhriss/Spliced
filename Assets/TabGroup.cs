@@ -75,7 +75,7 @@ public class TabGroup : MonoBehaviour
         button.Select();
         ResetTabs();
         //button.background.sprite = activeSprite;
-        button.background.color = activeColor;
+        //button.background.color = activeColor;
 
 
 
