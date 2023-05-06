@@ -144,7 +144,7 @@ public class EnemyAIAstar : MonoBehaviour
             currentCooldown = 0;
         }
 
-        Debug.Log(state + " " + CanSeeTarget().ToString());
+        //Debug.Log(state + " " + CanSeeTarget().ToString());
         // Check if we are in range of attacking the player
         if (InRangeOfAttack()){
             state = EnemyState.Attacking;
@@ -159,7 +159,7 @@ public class EnemyAIAstar : MonoBehaviour
             }
         }else if(CanSeeTarget())
         {
-            Debug.Log("Setting as walking");
+            //Debug.Log("Setting as walking");
             state = EnemyState.Walking;
         }
         else
@@ -182,7 +182,7 @@ public class EnemyAIAstar : MonoBehaviour
         if(state == EnemyState.Walking && canMove)
         {
             Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rigidbody2d.position).normalized;
-            Debug.Log("Has a path to follow");
+            //Debug.Log("Has a path to follow");
             animator.SetBool("isWalking", true);
             animator.SetFloat("XInput", direction.x);
             animator.SetFloat("YInput", direction.y);
