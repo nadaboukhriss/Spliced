@@ -18,12 +18,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float collisionOffset = 0.001f;
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    Collider2D movementCollider;
 
     public Rigidbody2D rigidbody2d;
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     Animator animator;
-    Collider2D movementCollider;
+    
     PlayerInput inputActions;
     SwapCharacters swapCharacters;
 
@@ -72,16 +73,6 @@ public class PlayerController : MonoBehaviour
         switchAbility.ReduceCooldown();
         human.ReduceCooldown();
         fox.ReduceCooldown();
-
-        /*if (Input.GetKeyDown(KeyCode.LeftShift) && !boosting)
-        {
-            Debug.Log("boost");
-            boosting = true;
-            rigidbody2d.velocity = lastMovementInput.normalized * 15;
-            Invoke(nameof(StopDash), 0.15f);
-            //StartCoroutine(BoostMovementSpeedForDuration(0.15f));
-        }
-        */
     }
 
     public Vector2 GetLastOrientering()
@@ -91,11 +82,6 @@ public class PlayerController : MonoBehaviour
     public void SetVelocity(Vector2 vec)
     {
         rigidbody2d.velocity = vec;
-    }
-
-    private void SetFalse()
-    {
-        boosting = false;
     }
     public void SetBoosting(bool arg)
     {
@@ -118,7 +104,7 @@ public class PlayerController : MonoBehaviour
         if(movementInput != Vector2.zero && canMove){
             animator.SetFloat("XInput", movementInput.x);
             animator.SetFloat("YInput", movementInput.y);
-            rigidbody2d.AddForce(movementInput.normalized * currentShape.moveSpeed*100 * Time.deltaTime);
+            rigidbody2d.velocity = movementInput.normalized * currentShape.moveSpeed;
             lastMovementInput = movementInput;
             animator.SetBool("isWalking", true);
             /*bool success = TryMove(movementInput);

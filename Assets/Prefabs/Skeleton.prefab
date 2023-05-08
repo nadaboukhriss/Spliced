@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1694746522251745017}
   - component: {fileID: 4157687301356900961}
+  - component: {fileID: 1210221065}
   m_Layer: 10
   m_Name: Hitbox
   m_TagString: Enemy
@@ -58,6 +59,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1210221065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361787404687916771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc54a92ee49bd347aa3999acbfebd3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4085468954376786340
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,12 +81,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4085468954376786365}
   - component: {fileID: 4085468954376786362}
-  - component: {fileID: 4085468954376786363}
   - component: {fileID: 4085468954376786361}
   - component: {fileID: 4085468954376786342}
   - component: {fileID: 4085468954376786343}
   - component: {fileID: 4085468954376786364}
   - component: {fileID: 1442937804015653143}
+  - component: {fileID: 565440801}
+  - component: {fileID: 3935600641162239339}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -150,33 +164,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &4085468954376786363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4085468954376786340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cce9ff7f2b3663429a169df571c5661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 192
-  speed: 0.5
-  nextWaypointDistance: 0.4
-  detectionRange: 6
-  attackRange: 0.5
-  rangeOffset: {x: 0, y: -0.1, z: 0}
-  rememberTargetTime: 1
-  attackCooldown: 1
-  showGizmos: 1
 --- !u!50 &4085468954376786361
 Rigidbody2D:
   serializedVersion: 4
@@ -276,7 +263,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   damage: 20
-  rangePrefab: {fileID: 0}
+--- !u!114 &565440801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4085468954376786340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919252afa3199bb4196e4f36b70b3f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 192
+  speed: 2
+  nextWaypointDistance: 0.5
+  detectionRange: 5
+  attackRange: 0.6
+  rangeOffset: {x: 0, y: 0, z: 0}
+  rememberTargetTime: 1
+  attackCooldown: 1
+  movementFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 448
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  collisionOffset: 0.001
+  showGizmos: 1
+--- !u!114 &3935600641162239339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4085468954376786340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 4891630690262267675
+  updateError: 0.5
+  checkTime: 0.2
 --- !u!1 &4085468954732273121
 GameObject:
   m_ObjectHideFlags: 0

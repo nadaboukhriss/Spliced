@@ -44,13 +44,13 @@ public class TimeDial : MonoBehaviour
             xpChangeRate = 1;
             float t = Mathf.InverseLerp(0, greenZoneEnd, normalizedDiff);
             xpChangeRate *= Mathf.Lerp(0f, 1f, t);
-            GetComponent<Image>().color = Color.green;
+            //GetComponent<Image>().color = Color.green;
         }
         else if (normalizedDiff <= yellowZoneEnd)
         {
             // Hand is in yellow zone
             xpChangeRate = 0f;
-            GetComponent<Image>().color = Color.yellow;
+            //GetComponent<Image>().color = Color.yellow;
         }
         else
         {
@@ -58,7 +58,7 @@ public class TimeDial : MonoBehaviour
             xpChangeRate = -1;
             float t = Mathf.InverseLerp(yellowZoneEnd, redZoneEnd, normalizedDiff);
             xpChangeRate *= Mathf.Lerp(0f, 1f, t);
-            GetComponent<Image>().color = Color.red;
+            //GetComponent<Image>().color = Color.red;
         }
 
         // Apply XP changes
@@ -70,7 +70,7 @@ public class TimeDial : MonoBehaviour
     {
         float timeDiff = time2 - time1;
         float normalizedDiff = timeDiff / maxDiff;
-        float angle = 180 * normalizedDiff;
+        float angle = 180 * normalizedDiff - 180;
 
         // set the rotation of the dial
         dialTransform.localRotation = Quaternion.Euler(0f, 0f, angle);

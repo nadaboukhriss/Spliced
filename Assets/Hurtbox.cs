@@ -11,7 +11,7 @@ public class Hurtbox : MonoBehaviour
         player = GetComponentInParent<Player>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         print("enter");
         Enemy enemy = collision.GetComponentInParent<Enemy>();
@@ -19,5 +19,5 @@ public class Hurtbox : MonoBehaviour
         {
             player.TakeDamage((int)enemy.GetDamage());
         }
-    }
+    }*/
 }

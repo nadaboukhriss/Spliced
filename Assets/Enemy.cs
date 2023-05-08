@@ -8,8 +8,6 @@ public class Enemy : MonoBehaviour
     private float maxHealth;
     [SerializeField]
     private float damage;
-    [SerializeField]
-    private GameObject rangePrefab;
 
     protected float health;
 
