@@ -176,12 +176,26 @@ public class PlayerController : MonoBehaviour
             {
                 currentShape.basicAbility.Activate();
                 LockMovement();
+
+                float attackDistance = 1f;
+                if (currentShape == human){
+                    // Find all enemy objects in range
+                    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackDistance, LayerMask.GetMask("Enemy"));
+
+                    // Deal damage to each enemy
+                    foreach (Collider2D enemy in hitEnemies)
+                    {
+                        enemy.GetComponent<Enemy>().TakeDamage(5);
+                    }
+                }
+
                 Vector3 mousePos = GameManager.Instance.mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 Vector3 target_direction = (mousePos - fireballSpawnPoint.position);
                 Vector3 direction = new Vector2(target_direction.x, target_direction.y).normalized;
                 animator.SetFloat("XAttack", direction.x);
                 animator.SetFloat("YAttack", direction.y);
                 animator.SetTrigger("basicAbility");
+
                 
             }
         }
