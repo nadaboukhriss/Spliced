@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private HealthBar healthBar;
 
-    
+    public int gameOverScreenSceneIndex = 2;
 
     public Inventory inventory;
     public float xp = 0f;
@@ -45,6 +46,16 @@ public class Player : MonoBehaviour
     {
         health -= damage;
         healthBar.SetHealth(health);
+        
+        if (health <= 0)
+        {
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+        SceneManager.LoadScene(gameOverScreenSceneIndex, LoadSceneMode.Single);
     }
 
     public void Heal(int amount)
