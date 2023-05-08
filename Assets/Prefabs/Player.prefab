@@ -457,8 +457,6 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   fireballPrefab: {fileID: 105277328274714729, guid: 0cac7ee49ac83cf499684cc4fbf2b278, type: 3}
-  moveSpeed: 6
-  collisionOffset: 0.001
   rigidbody2d: {fileID: 0}
   dirRight: 0
   dirUp: 0
@@ -550,6 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBar: {fileID: 0}
+  gameOverScreenSceneIndex: 2
   inventory:
     items: []
   xp: 0
@@ -592,7 +591,7 @@ MonoBehaviour:
     abilityIcon: {fileID: 21300000, guid: 718f70c1760708644bc5732cdb0ec60f, type: 3}
     cooldown: 0.1
   specialAbility:
-    abilityIcon: {fileID: 21300000, guid: b9292bf9caf629145b6825e78fc93053, type: 3}
+    abilityIcon: {fileID: 21300000, guid: 01de5975eb2ccd44093774499bf227f7, type: 3}
     cooldown: 1
   swordDamage: 5
   dashDuration: 0.3
