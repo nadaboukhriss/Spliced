@@ -45,8 +45,8 @@ public class TabGroup : MonoBehaviour
         ResetTabs();
         int index = button.transform.GetSiblingIndex();
         if (index != currentTab) {
-            //button.background.sprite = hoverSprite;
-            button.background.color = hoverColor;
+            button.background.sprite = hoverSprite;
+            //button.background.color = hoverColor;
         }
     }
     public void OnTabExit(MenuTabButton button)
@@ -74,7 +74,7 @@ public class TabGroup : MonoBehaviour
         currentTab = index;
         button.Select();
         ResetTabs();
-        //button.background.sprite = activeSprite;
+        button.background.sprite = activeSprite;
         //button.background.color = activeColor;
 
 
@@ -97,7 +97,7 @@ public class TabGroup : MonoBehaviour
         foreach (MenuTabButton button in tabButtons)
         {
             if (tabButtons[currentTab] != null && button == tabButtons[currentTab]) { continue; }
-            button.GetComponent<Image>().color = idleColor;
+            button.GetComponent<Image>().sprite = idleSprite;
         }
     }
 

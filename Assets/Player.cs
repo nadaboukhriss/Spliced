@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public Inventory inventory;
     public float xp = 0f;
     private int health;
-    private float xpChange = 0f;
+    //private float xpChange = 0f;
 
     private void Awake()
     {

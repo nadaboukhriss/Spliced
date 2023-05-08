@@ -14,8 +14,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 pastPos;
     private Vector3 difference;
 
-    [SerializeField] float moveSpeed = 1.0f;
-    [SerializeField] float collisionOffset = 0.001f;
+    //[SerializeField] float collisionOffset = 0.001f;
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     Collider2D movementCollider;
@@ -25,7 +24,6 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     
-    PlayerInput inputActions;
     SwapCharacters swapCharacters;
 
     private int currentAvatar;
@@ -59,7 +57,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         swapCharacters = GetComponent<SwapCharacters>();
         movementCollider = GetComponent<Collider2D>();
-        inputActions = GetComponent<PlayerInput>();
+        //inputActions = GetComponent<PlayerInput>();
         pastPos = transform.position;   
     }
 
