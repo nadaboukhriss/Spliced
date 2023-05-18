@@ -45,6 +45,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 1a628f7aa0f29dc48a97c030328fc177, type: 3}
+    - {fileID: 2800000, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -86,6 +87,18 @@ SpriteAtlas:
   - {fileID: -331732299, guid: 1a628f7aa0f29dc48a97c030328fc177, type: 3}
   - {fileID: 2050320908, guid: 1a628f7aa0f29dc48a97c030328fc177, type: 3}
   - {fileID: -611827378, guid: 1a628f7aa0f29dc48a97c030328fc177, type: 3}
+  - {fileID: 1929505846, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: 1370246884, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: 802308383, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: 1272148185, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: 1176702460, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: -1788491110, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: 447769743, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: 161058781, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: -675090601, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: -902320694, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: 751780086, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
+  - {fileID: 1280192970, guid: 8f30d36c6e8607f458bd56e26ab302c1, type: 3}
   m_PackedSpriteNamesToIndex:
   - tiles_30
   - tiles_31
@@ -123,6 +136,18 @@ SpriteAtlas:
   - tiles_4
   - tiles_9
   - tiles_8
+  - tiles - water_10
+  - tiles - water_11
+  - tiles - water_3
+  - tiles - water_2
+  - tiles - water_1
+  - tiles - water_0
+  - tiles - water_7
+  - tiles - water_6
+  - tiles - water_5
+  - tiles - water_4
+  - tiles - water_9
+  - tiles - water_8
   m_RenderDataMap: {}
   m_Tag: sprite atlas
   m_IsVariant: 0
