@@ -41,8 +41,10 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("Dead");
             ai.SetState(EnemyState.Dead);
         } else {
+
             StopCoroutine(damageFlash());
             StartCoroutine(damageFlash());
+        
         }
     }
 
