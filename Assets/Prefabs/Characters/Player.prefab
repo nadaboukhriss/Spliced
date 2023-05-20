@@ -1,5 +1,116 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1242894049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1242894050}
+  - component: {fileID: 1242894051}
+  m_Layer: 6
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1242894050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242894049}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2463828663625952475}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1242894051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242894049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.72
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 000000000fe79caa6fc13f1a
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_Vertices:
+  - position: {x: 0.9985302, y: 0.9985302, z: 0}
+    color: {r: 0.70710677, g: 0.70710677, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.9985302, y: 0.9985302, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9985302, y: 0.9985302, z: 0}
+    color: {r: -0.70710677, g: 0.70710677, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.9985302, y: 0.9985302, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.99853003, y: -0.9985304, z: 0}
+    color: {r: -0.70710665, g: -0.7071069, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: -0.99853003, y: -0.9985304, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.99853003, y: -0.9985304, z: 0}
+    color: {r: 0.70710665, g: -0.7071069, b: 0, a: 0}
+    uv: {x: 0, y: 0}
+  - position: {x: 0.99853003, y: -0.9985304, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  - position: {x: 0, y: 0, z: 0}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    uv: {x: 0, y: 0}
+  m_Triangles: 030001000800020000000100030002000100050003000800040002000300050004000300070005000800060004000500070006000500010007000800000006000700010000000700
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 8
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &607921551358234217
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +224,7 @@ GameObject:
   - component: {fileID: 8655640767024826585}
   - component: {fileID: 7633553425409139482}
   - component: {fileID: 2652789479675940328}
+  - component: {fileID: 1589732114}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -136,6 +248,7 @@ Transform:
   - {fileID: 7912168453745682366}
   - {fileID: 2440593549728929486}
   - {fileID: 6421551950079830949}
+  - {fileID: 1242894050}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -159,7 +272,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e8e6bcca72f90462a8f67134325d9fbe, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -404,6 +517,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 99c68989-c760-4328-97b3-2cca1c4e60af
     m_ActionName: Player/BasicAttack1[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2fc2b1cf-8269-46f7-9165-c5a27b1adbd9
+    m_ActionName: Player/Interact[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -422,8 +539,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 0.05
+  m_LinearDrag: 15
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -458,8 +575,6 @@ MonoBehaviour:
     maxNormalAngle: 0
   fireballPrefab: {fileID: 105277328274714729, guid: 0cac7ee49ac83cf499684cc4fbf2b278, type: 3}
   rigidbody2d: {fileID: 0}
-  dirRight: 0
-  dirUp: 0
   human: {fileID: 2652789479675940328}
   fox: {fileID: 7633553425409139482}
   fireballSpawnPoint: {fileID: 3152391904867315877}
@@ -500,8 +615,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatar1: {fileID: 7013427374199162144}
   avatar2: {fileID: 607921551358234217}
-  maxTime: 30
   clock: {fileID: 0}
+  trustLostOnForceSwitch: 0
 --- !u!114 &1408099763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +632,6 @@ MonoBehaviour:
   timerSlider: {fileID: 0}
   timerText: {fileID: 0}
   swapTime: 30
-  swapSpeed: 50
 --- !u!70 &4840930014497367111
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -547,11 +661,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  healthBar: {fileID: 0}
+  healthHeart: {fileID: 0}
+  levelSystemUI: {fileID: 0}
+  looseTrustOnDeath: 10
   gameOverScreenSceneIndex: 2
   inventory:
     items: []
-  xp: 0
 --- !u!114 &7633553425409139482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,7 +679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7d0c3d2b306f34cb261330d5431580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
+  moveSpeed: 3
+  knockBackForce: 10
   basicAbility:
     abilityIcon: {fileID: 21300000, guid: ae7b179dea26257418ade37ec6bb04d9, type: 3}
     cooldown: 0.5
@@ -586,7 +702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd656f448a6f050478d07d9d4985706d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 2
+  knockBackForce: 20
   basicAbility:
     abilityIcon: {fileID: 21300000, guid: 718f70c1760708644bc5732cdb0ec60f, type: 3}
     cooldown: 0.1
@@ -595,7 +712,20 @@ MonoBehaviour:
     cooldown: 1
   swordDamage: 5
   dashDuration: 0.3
-  dashForce: 200
+  dashForce: 50
+--- !u!114 &1589732114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463828663625952473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72898c9794498d849a54d2093cd9e215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelSystemUI: {fileID: 0}
 --- !u!1 &2665468015319862254
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e6d84c33cff4f22accbd846dae9925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
 --- !u!1 &7013427374199162144
 GameObject:
   m_ObjectHideFlags: 0

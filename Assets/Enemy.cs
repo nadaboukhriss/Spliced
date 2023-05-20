@@ -32,7 +32,6 @@ public class Enemy : MonoBehaviour
         ai = GetComponent<EnemyAIAstar>();
         healthBar = transform.Find("EnemyHealthbar").GetComponent<Transform>();
         UpdateHealthbar(1);
-        spriteRenderer = transform.GetComponent<SpriteRenderer>();
     }
 
     private void UpdateHealthbar(float xScale)
@@ -54,13 +53,6 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Death();
-            animator.SetTrigger("Dead");
-            ai.SetState(EnemyState.Dead);
-        } else {
-
-            StopCoroutine(damageFlash());
-            StartCoroutine(damageFlash());
-        
         }
     }
 
@@ -101,19 +93,5 @@ public class Enemy : MonoBehaviour
     protected virtual void Attack()
     {
         
-    }
-
-    // Activates flashing when taking damage
-    private IEnumerator damageFlash() {
-        
-        float ticks = 20f;
-        for(int i = 0; i < ticks; i++) {
-            float val = Mathf.Sin((Mathf.PI / ticks) * i);
-            spriteRenderer.material.SetFloat("_Fade", val);
-
-            yield return new WaitForSeconds(0.005f);
-        }
-
-        spriteRenderer.material.SetFloat("_Fade", 0f);
     }
 }

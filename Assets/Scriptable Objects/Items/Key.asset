@@ -18,9 +18,8 @@ MonoBehaviour:
   hasDialogue: 1
   isQuest: 0
   dialogue:
-    sentences_to_human: []
-    sentences_to_fox: []
-    commonDialogue:
-    - Found a key!
+    sentences:
+    - This key could be the ticket to unlocking some secret treasure. Better keep
+      our eyes peeled for a matching lock!
   description: 
   trustGain: 0

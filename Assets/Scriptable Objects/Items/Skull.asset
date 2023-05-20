@@ -18,9 +18,7 @@ MonoBehaviour:
   hasDialogue: 1
   isQuest: 0
   dialogue:
-    sentences_to_human: []
-    sentences_to_fox: []
-    commonDialogue:
-    - Skull
+    sentences:
+    - What a nice find, a dead persons head!
   description: This is an important skull used for something?
   trustGain: 0

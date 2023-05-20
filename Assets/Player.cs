@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System;
 
 public class Player : MonoBehaviour
 {
@@ -28,8 +27,6 @@ public class Player : MonoBehaviour
     private LevelSystem levelSystem;
     //private float xpChange = 0f;
 
-    private SpriteRenderer spriteRenderer;
-
     private void Awake()
     {
         health = maxHealth;
@@ -40,8 +37,7 @@ public class Player : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         levelSystem = GetComponent<LevelSystem>();
-
-        spriteRenderer = transform.GetComponent<SpriteRenderer>();
+        
     }
     public Player()
     {
@@ -75,10 +71,6 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             Death();
-        } else 
-        {
-            StopCoroutine(damageFlash());
-            StartCoroutine(damageFlash());
         }
     }
 
@@ -117,20 +109,6 @@ public class Player : MonoBehaviour
             health = maxHealth;
         }
         UpdateHealthUI();
-    }
-
-    // Activates flashing when taking damage
-    private IEnumerator damageFlash() {
-        
-        float ticks = 20f;
-        for(int i = 0; i < ticks; i++) {
-            float val = Mathf.Sin((Mathf.PI / ticks) * i);
-            spriteRenderer.material.SetFloat("_Fade", val);
-
-            yield return new WaitForSeconds(0.005f);
-        }
-
-        spriteRenderer.material.SetFloat("_Fade", 0f);
     }
 
 
