@@ -18,7 +18,9 @@ MonoBehaviour:
   hasDialogue: 1
   isQuest: 1
   dialogue:
-    sentences:
-    - Another great success, found some drops!
+    sentences_to_human: []
+    sentences_to_fox: []
+    commonDialogue:
+    - Drops
   description: 
   trustGain: 0

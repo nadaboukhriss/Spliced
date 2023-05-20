@@ -18,10 +18,9 @@ MonoBehaviour:
   hasDialogue: 1
   isQuest: 1
   dialogue:
-    sentences:
-    - 'Ash: Got the blue amulet piece. We''re getting closer.'
-    - 'Aelia: We need to keep working together to find the rest and break this curse.'
-    - 'Ash: Agreed. Let''s keep searching and put an end to this.'
-    - Your progress can be seen in the menu!
+    sentences_to_human: []
+    sentences_to_fox: []
+    commonDialogue:
+    - Piece of the amulet!
   description: 
   trustGain: 30
