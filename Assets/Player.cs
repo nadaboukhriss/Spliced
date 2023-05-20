@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         health = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
 
         spriteRenderer = transform.GetComponent<SpriteRenderer>();
         healthHeart.fillAmount = 1;
@@ -88,13 +87,11 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             Death();
-        } else 
-        {
-            StopCoroutine(damageFlash());
-            StartCoroutine(damageFlash());
         }
         else
         {
+            StopCoroutine(damageFlash());
+            StartCoroutine(damageFlash());
             rigidbody2d.AddForce(knockback, ForceMode2D.Impulse);
         }
     }

@@ -55,6 +55,11 @@ public class Enemy : MonoBehaviour
         {
             Death();
         }
+        else
+        {
+            StopCoroutine(damageFlash());
+            StartCoroutine(damageFlash());
+        }
     }
 
     public void TakeDamage(float damage, Vector2 knockback)
@@ -66,8 +71,7 @@ public class Enemy : MonoBehaviour
         rigidbody2d.AddForce(knockback, ForceMode2D.Impulse);
         if (health <= 0)
         {
-            animator.SetTrigger("Dead");
-            ai.SetState(EnemyState.Dead);
+            Death();
         } else {
 
             StopCoroutine(damageFlash());
@@ -75,10 +79,6 @@ public class Enemy : MonoBehaviour
         
         }
     }
-            Death();
-        }
-    }
-
     private void Death()
     {
         GameManager.Instance.player.GetComponent<Player>().ChangeTrust(trustGain);
