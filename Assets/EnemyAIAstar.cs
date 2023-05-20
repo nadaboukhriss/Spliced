@@ -238,7 +238,7 @@ public class EnemyAIAstar : MonoBehaviour
             castCollisions,
             speed*Time.fixedDeltaTime + collisionOffset
         );
-        Debug.Log("count");
+        // Debug.Log("count");
         if(count == 0){
             //Movement speed is determined based on the current shape of the player.
             rigidbody2d.MovePosition(rigidbody2d.position + direction*speed*Time.fixedDeltaTime);
