@@ -149,6 +149,11 @@ public class PlayerController : MonoBehaviour
         
         return true;
     }
+
+    public bool isHuman(){
+        return (currentShape == human);
+    }
+
     public void OnMove(InputAction.CallbackContext ctx){
         movementInput = ctx.ReadValue<Vector2>();
     }

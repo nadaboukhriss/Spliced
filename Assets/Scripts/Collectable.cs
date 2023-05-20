@@ -16,7 +16,7 @@ public class Collectable : MonoBehaviour
         {
             Debug.Log("Pick up item " + item.itemName);
             SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.PickupSound);
-            dialogue.TriggerDialogue(item.itemName, item.icon);
+            dialogue.TriggerItemDialogue(item.itemName, item.icon);
             player.inventory.AddItem(item);
             Destroy(gameObject);
         }

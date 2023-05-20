@@ -41,7 +41,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
         playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
     }
-    public void StartDialogue(string[] dialogue,string name, Sprite icon)
+    public void StartItemDialogue(string[] dialogue,string name, Sprite icon)
     {
         Time.timeScale = 0;
         sentences.Clear();
@@ -49,6 +49,20 @@ public class DialogueManager : MonoBehaviour
         playerInput.SwitchCurrentActionMap("Dialogue");
         nameText.text = name;
         iconImage.sprite = icon;
+        foreach (string sentence in dialogue)
+        {
+            sentences.Enqueue(sentence);
+        }
+
+        DisplayNextSentence();
+    }
+
+    public void StartDialogue(string[] dialogue)
+    {
+        Time.timeScale = 0;
+        sentences.Clear();
+        dialoguePanel.SetActive(true);
+        playerInput.SwitchCurrentActionMap("Dialogue");
         foreach (string sentence in dialogue)
         {
             sentences.Enqueue(sentence);
