@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
     private void UpdateHealthbar(float xScale)
     {
         healthBar.localScale = new Vector3(xScale, healthBar.localScale.y, healthBar.localScale.z);
+        spriteRenderer = transform.GetComponent<SpriteRenderer>();
     }
 
     public float GetKnockbackForce()
@@ -65,6 +66,15 @@ public class Enemy : MonoBehaviour
         rigidbody2d.AddForce(knockback, ForceMode2D.Impulse);
         if (health <= 0)
         {
+            animator.SetTrigger("Dead");
+            ai.SetState(EnemyState.Dead);
+        } else {
+
+            StopCoroutine(damageFlash());
+            StartCoroutine(damageFlash());
+        
+        }
+    }
             Death();
         }
     }
@@ -93,5 +103,19 @@ public class Enemy : MonoBehaviour
     protected virtual void Attack()
     {
         
+    }
+
+    // Activates flashing when taking damage
+    private IEnumerator damageFlash() {
+        
+        float ticks = 20f;
+        for(int i = 0; i < ticks; i++) {
+            float val = Mathf.Sin((Mathf.PI / ticks) * i);
+            spriteRenderer.material.SetFloat("_Fade", val);
+
+            yield return new WaitForSeconds(0.005f);
+        }
+
+        spriteRenderer.material.SetFloat("_Fade", 0f);
     }
 }
