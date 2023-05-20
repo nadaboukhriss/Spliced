@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: dungeon sprite atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -208007310, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -1704756529, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 343969291, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -1545918913, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -1034336878, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -1772001830, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1462425661, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 978500831, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 279238427, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -185759593, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 2068000701, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 898904192, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1983100326, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -2104398456, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1955296815, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 264486589, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -301289714, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -369109593, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1575323532, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 362944513, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -1209441237, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 742893907, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 2022334876, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 560393993, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1802738893, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1345732091, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -1223549606, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 4475737, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1937055087, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1589771935, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -1664364749, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1444468522, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 269107446, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -1528040669, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -1592869512, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 156929036, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: -1407265891, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1345391962, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 1938167507, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  - {fileID: 762452680, guid: 806197df5c111b947b9aec14b9fcb36d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - magma_3
+  - magma_2
+  - magma_1
+  - magma_0
+  - magma_7
+  - magma_6
+  - magma_5
+  - magma_4
+  - magma_9
+  - magma_8
+  - magma_30
+  - magma_31
+  - magma_32
+  - magma_33
+  - magma_23
+  - magma_34
+  - magma_22
+  - magma_35
+  - magma_21
+  - magma_36
+  - magma_20
+  - magma_16
+  - magma_37
+  - magma_27
+  - magma_17
+  - magma_38
+  - magma_26
+  - magma_14
+  - magma_39
+  - magma_25
+  - magma_15
+  - magma_24
+  - magma_12
+  - magma_13
+  - magma_10
+  - magma_29
+  - magma_11
+  - magma_28
+  - magma_18
+  - magma_19
+  m_RenderDataMap: {}
+  m_Tag: dungeon sprite atlas
+  m_IsVariant: 0
