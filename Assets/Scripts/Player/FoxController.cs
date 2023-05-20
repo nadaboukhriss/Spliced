@@ -20,6 +20,12 @@ public class FoxController : PersonalityController2
         basicAbility.Activate();
     }
 
+    override
+    public float GetBasicDamage()
+    {
+        return fireballDamage;
+    }
+
     public override void SpecialAbility()
     {
         specialAbility.Activate();

@@ -150,7 +150,54 @@ public class EnemyAIAstar : MonoBehaviour
         }
         return false;
     }
+    public void SearchForPlayer()
+    {
+        Vector2 direction = (target.position - transform.position).normalized;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectionRange*10, obstacleMask);
+        if (hit.collider)
+        {
+            Player player = hit.collider.gameObject.GetComponent<Player>();
+            if (player)
+            {
+                keepingTrackOfTarget = true;
+                lastSeenTarget = Time.time;
+                returnToStart = false;
+            }
+        }
+    }
 
+    protected void DecideAction()
+    {
+        if (state == EnemyState.Dead)
+        {
+            rigidbody2d.velocity = Vector2.zero;
+            return;
+        }
+        //Cooldown for the enemy attacking
+
+
+        bool canSeeTarget = CanSeeTarget();
+        // Check if we are in range of attacking the player
+        if (InRangeOfAttack())
+        {
+            state = EnemyState.Attacking;
+            path = null; //Remove the path we are walking
+            if (IsAbilityReady())
+            {
+                Attack();
+            }
+        }
+        else if (canSeeTarget || Time.time - lastSeenTarget < rememberTargetTime)
+        {
+            state = EnemyState.Walking;
+        }
+        else
+        {
+            state = EnemyState.Walking;
+            returnToStart = true;
+            //state = EnemyState.Idle;
+        }
+    }
 
     protected virtual void Attack()
     {

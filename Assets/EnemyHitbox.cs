@@ -17,7 +17,10 @@ public class EnemyHitbox : MonoBehaviour
             Player player = other.GetComponentInParent<Player>();
             if (player)
             {
-                player.TakeDamage((int)enemy.GetDamage());
+                
+                Vector2 direction = (player.transform.position - transform.position).normalized;
+                Vector2 knockback = direction * enemy.GetKnockbackForce();
+                player.TakeDamage((int)enemy.GetDamage(),knockback);
             }
         }
     }

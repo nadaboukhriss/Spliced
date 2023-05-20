@@ -15,4 +15,10 @@ MonoBehaviour:
   itemName: Skull
   type: 0
   icon: {fileID: 21300000, guid: a361569bda596fd40823fd06eb634f14, type: 3}
+  hasDialogue: 1
+  isQuest: 0
+  dialogue:
+    sentences:
+    - What a nice find, a dead persons head!
   description: This is an important skull used for something?
+  trustGain: 0

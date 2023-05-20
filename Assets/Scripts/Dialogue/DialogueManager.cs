@@ -48,7 +48,20 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
         playerInput.SwitchCurrentActionMap("Dialogue");
         nameText.text = name;
-        iconImage.sprite = icon;
+        if(icon != null)
+        {
+            iconImage.sprite = icon;
+            Color color = iconImage.color;
+            color.a = 1.0f;
+            iconImage.color = color;
+        }
+        else
+        {
+            Color color = iconImage.color;
+            color.a = 0.0f;
+            iconImage.color = color;
+        }
+        
         foreach (string sentence in dialogue)
         {
             sentences.Enqueue(sentence);

@@ -7,9 +7,11 @@ public class SwapCharacters : MonoBehaviour
 {
     // referenses to controlled game objects
 	public GameObject avatar1, avatar2;
-    public float maxTime;
+    private float maxTime = 0;
     [SerializeField]
     private TimeDial clock;
+    [SerializeField]
+    private float trustLostOnForceSwitch = 0f;
     private Animator animator;
 
     private PersonalityController2 currentAvatar;
@@ -19,7 +21,6 @@ public class SwapCharacters : MonoBehaviour
 
     private float timeSpentAvatar1 = 1f;
     private float timeSpentAvatar2 = 1f;
-    private float timeSpentTotal = 2f;
     // variable contains which avatar is on and active
     int whichAvatarIsOn = 1;
 
@@ -49,9 +50,12 @@ public class SwapCharacters : MonoBehaviour
         
     }
 
+    public void ModifyMaxTime(float percentage)
+    {
+        maxTime *= percentage;
+    }
     public void Update()
     {
-        timeSpentTotal += Time.deltaTime;
         switch (whichAvatarIsOn)
         {
             // if the first avatar is on
@@ -65,11 +69,13 @@ public class SwapCharacters : MonoBehaviour
                 break;
         }
         float timeDiff = Mathf.Abs(timeSpentAvatar1 - timeSpentAvatar2);
-        if(timeDiff > GetComponent<Timer>().swapTime)
+        if(timeDiff > maxTime)
         {
+            //Forceful Switch
             SwapCharacter();
+            GetComponent<Player>().ChangeTrust(-trustLostOnForceSwitch);
         }
-        clock.UpdateDial(timeSpentAvatar1, timeSpentAvatar2, GetComponent<Timer>().swapTime);
+        clock.UpdateDial(timeSpentAvatar1, timeSpentAvatar2, maxTime);
     }
     public void SwapCharacter (){
         Timer slider = GetComponent<Timer>();
@@ -81,26 +87,12 @@ public class SwapCharacters : MonoBehaviour
 
 		        // if the first avatar is on
 		        case 1:
-
-			        // then the second avatar is on now
 			        whichAvatarIsOn = 2;
-                    //currentAvatar = GetComponent<Personality2Controller>();
-                //animator.runtimeAnimatorController = avatar2Animations as RuntimeAnimatorController;
-                // disable the first one and anable the second one
-                    //avatar1.gameObject.SetActive (false);
-			        //avatar2.gameObject.SetActive (true);
 			        break;
-
 		        // if the second avatar is on
 		        case 2:
-
 			        // then the first avatar is on now
 			        whichAvatarIsOn = 1;
-                    //currentAvatar = GetComponent<Personality1Controller>();
-                //animator.runtimeAnimatorController = avatar1Animations as RuntimeAnimatorController;
-                // disable the second one and anable the first one
-                    //avatar1.gameObject.SetActive (true);
-			        //avatar2.gameObject.SetActive (false);
 			        break;
 		    }
         animator.SetBool("isFox", whichAvatarIsOn == 2);

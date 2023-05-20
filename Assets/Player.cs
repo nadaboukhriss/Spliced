@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -9,63 +10,105 @@ public class Player : MonoBehaviour
     private int maxHealth;
 
     [SerializeField]
-    private HealthBar healthBar;
+    private Image healthHeart;
+
+    
+
+    [SerializeField]
+    private float looseTrustOnDeath = 0f;
 
     public int gameOverScreenSceneIndex = 2;
 
     public Inventory inventory;
-    public float xp = 0f;
-    private int health;
+    
+    private float health;
+    private Rigidbody2D rigidbody2d;
+
+    private LevelSystem levelSystem;
     //private float xpChange = 0f;
 
     private void Awake()
     {
         health = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        healthHeart.fillAmount = 1;
+        
+    }
+    private void Start()
+    {
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        levelSystem = GetComponent<LevelSystem>();
+        
     }
     public Player()
     {
         inventory = new Inventory();
     }
 
-    public void Update()
+
+    public void ChangeTrust(float amount)
     {
+
+        levelSystem.ChangeTrust(amount);
     }
 
-    public void ChangeXP(float change)
+    public int GetMaxHealth()
     {
-        xp += change;
+        return maxHealth;
     }
-
-
-    public int GetHealth()
+    public float GetHealth()
     {
         return health;
     }
-    public void TakeDamage(int damage)
+    public void UpdateHealthUI()
+    {
+        healthHeart.fillAmount = (float)health / maxHealth;
+    }
+    public void TakeDamage(float damage)
     {
         health -= damage;
-        healthBar.SetHealth(health);
-        
+        UpdateHealthUI();
+
         if (health <= 0)
         {
             Death();
         }
     }
 
-    private void Death()
+    public void TakeDamage(float damage, Vector2 knockback)
     {
-        SceneManager.LoadScene(gameOverScreenSceneIndex, LoadSceneMode.Single);
+        health -= damage;
+        UpdateHealthUI();
+
+        if (health <= 0)
+        {
+            Death();
+        }
+        else
+        {
+            rigidbody2d.AddForce(knockback, ForceMode2D.Impulse);
+        }
     }
 
-    public void Heal(int amount)
+    private void RespawnPlayer()
+    {
+        rigidbody2d.position = GameManager.Instance.respawnPoint.position;
+        Heal(maxHealth / 2);
+        ChangeTrust(-looseTrustOnDeath);
+    }
+    private void Death()
+    {
+        RespawnPlayer();
+        //SceneManager.LoadScene(gameOverScreenSceneIndex, LoadSceneMode.Single);
+    }
+
+    public void Heal(float amount)
     {
         health += amount;
         if(health > maxHealth)
         {
             health = maxHealth;
         }
-        healthBar.SetHealth(health);
+        UpdateHealthUI();
     }
 
 

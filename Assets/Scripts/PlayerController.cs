@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour
 
     public ContactFilter2D movementFilter;
     public GameObject fireballPrefab;
-    //public float fireballSpeed = 10f;
-    //public float damage = 5f;
 
     private Vector3 pastPos;
     private Vector3 difference;
@@ -23,15 +21,11 @@ public class PlayerController : MonoBehaviour
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     Animator animator;
-    
+    Player player;
     SwapCharacters swapCharacters;
 
     private int currentAvatar;
     private Vector2 lastMovementInput = Vector2.zero;
-    
-
-    public float dirRight;
-    public float dirUp;
 
     [Header("Personalities")]
     public PersonalityController2 human;
@@ -50,6 +44,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
 
     private bool launchedFireBall = false;
+
+    private List<SinkingTile> standingOnTiles;
+    private bool standingOnLava = false;
+    private float lavaDamageTickSpeed = 1.0f;
+    private float tickCooldown = 0f;
     private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -64,6 +63,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         currentShape = human;
+        standingOnTiles = new List<SinkingTile>();
+        player = GetComponent<Player>();
     }
 
     public void Update()
@@ -71,6 +72,21 @@ public class PlayerController : MonoBehaviour
         switchAbility.ReduceCooldown();
         human.ReduceCooldown();
         fox.ReduceCooldown();
+
+        tickCooldown -= Time.deltaTime;
+        if (standingOnLava && tickCooldown <= 0)
+        {
+            tickCooldown = lavaDamageTickSpeed;
+            foreach (SinkingTile tile in standingOnTiles)
+            {
+                if (!tile.submerged)
+                {
+                    return;
+                }
+            }
+            //Not safe on tile;
+            player.TakeDamage(10);
+        }
     }
 
     public Vector2 GetLastOrientering()
@@ -92,65 +108,42 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        /*if (rigidbody2d.IsTouchingLayers())
-        {
-
-            animator.SetBool("isWalking", false);
-            rigidbody2d.velocity = Vector2.zero;
-        }*/
         if (boosting) return;
         if(movementInput != Vector2.zero && canMove){
             animator.SetFloat("XInput", movementInput.x);
             animator.SetFloat("YInput", movementInput.y);
-            rigidbody2d.velocity = movementInput.normalized * currentShape.moveSpeed;
+
+            bool abnormalSpeed = rigidbody2d.velocity.magnitude > currentShape.moveSpeed;
+            rigidbody2d.AddForce(movementInput.normalized * currentShape.moveSpeed * 1000 * Time.deltaTime);
+
+            if(rigidbody2d.velocity.magnitude > currentShape.moveSpeed && !abnormalSpeed)
+                rigidbody2d.velocity = Vector2.ClampMagnitude(rigidbody2d.velocity, currentShape.moveSpeed);
+            
             lastMovementInput = movementInput;
             animator.SetBool("isWalking", true);
-            /*bool success = TryMove(movementInput);
-            if(!success && movementInput.x != 0)
-            {
-                success = TryMove(new Vector2(movementInput.x,0));
-            }
-            if(!success && movementInput.y != 0)
-            {
-                success = TryMove(new Vector2(0,movementInput.y));
-            }
-            animator.SetBool("isWalking", success);*/
-
-
-            dirRight = movementInput.x != 0 ? Mathf.Sign(movementInput.x) : 0;
-            dirUp = movementInput.y != 0 ? Mathf.Sign(movementInput.y) : 0;
-            
 
         }else{
-            rigidbody2d.velocity = Vector2.zero;
             animator.SetBool("isWalking", false);
         }
-
-        
-
         pastPos = transform.position;
     }
 
-    private bool TryMove(Vector2 direction){
-        /*int count = movementCollider.Cast(
-            direction,
-            movementFilter,
-            castCollisions,
-            moveSpeed*Time.fixedDeltaTime + collisionOffset
-        );
-
-        if(count == 0){
-            //Movement speed is determined based on the current shape of the player.
-            rigidbody2d.MovePosition(rigidbody2d.position + direction*currentShape.moveSpeed*Time.fixedDeltaTime);
-            return true;
-        }*/
-        
-        
-        
-        return true;
+    public PersonalityController2 GetCurrentShape()
+    {
+        return currentShape;
     }
     public void OnMove(InputAction.CallbackContext ctx){
         movementInput = ctx.ReadValue<Vector2>();
+    }
+
+    public bool IsPlayingAelia()
+    {
+        return swapCharacters.getCurrentCharacter() == 1;
+    }
+
+    public bool IsPlayingAsh()
+    {
+        return swapCharacters.getCurrentCharacter() == 2;
     }
 
     public AbilityBase GetSwitchAbility()
@@ -172,26 +165,15 @@ public class PlayerController : MonoBehaviour
         {
             if (currentShape.basicAbility.IsReady())
             {
+
                 currentShape.basicAbility.Activate();
-                LockMovement();
-
-                float attackDistance = 1f;
-                if (currentShape == human){
-                    // Find all enemy objects in range
-                    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackDistance, LayerMask.GetMask("Enemy"));
-
-                    // Deal damage to each enemy
-                    foreach (Collider2D enemy in hitEnemies)
-                    {
-                        enemy.GetComponent<Enemy>().TakeDamage(5);
-                    }
-                }
-
                 Vector3 mousePos = GameManager.Instance.mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 Vector3 target_direction = (mousePos - fireballSpawnPoint.position);
                 Vector3 direction = new Vector2(target_direction.x, target_direction.y).normalized;
                 animator.SetFloat("XAttack", direction.x);
                 animator.SetFloat("YAttack", direction.y);
+                animator.SetFloat("XInput", direction.x);
+                animator.SetFloat("YInput", direction.y);
                 animator.SetTrigger("basicAbility");
 
                 
@@ -205,7 +187,6 @@ public class PlayerController : MonoBehaviour
         if (launchedFireBall) return;
 
         launchedFireBall = true;
-        UnlockMovement();
         GameObject fireballPrefab = Resources.Load<GameObject>("Fireball");
         GameObject fireballInstance = Instantiate(fireballPrefab);
 
@@ -221,7 +202,8 @@ public class PlayerController : MonoBehaviour
         fireballInstance.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
         
         fireballInstance.GetComponent<Fireball>().travelDirection = target_direction;
-        fireballInstance.GetComponent<Fireball>().dirUp = dirUp;
+        fireballInstance.GetComponent<Fireball>().SetDamage(currentShape.GetBasicDamage());
+        fireballInstance.GetComponent<Fireball>().SetKnockbackForce(currentShape.GetKnockbackForce());
     }
 
     public void DashAbility()
@@ -277,12 +259,33 @@ public class PlayerController : MonoBehaviour
     public void UnlockMovement(){
         canMove = true;
     }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
 
-    public void OnTriggerEnter2D(Collider2D other){
-        // print("Hit!");
-        // if(other.tag == "Enemy"){
-        //     print("Hit enemy!");
-            
-        // }
+        SinkingTile tile = collision.GetComponent<SinkingTile>();
+        if(tile)
+        {
+            standingOnTiles.Add(tile);
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Lava")) standingOnLava = true;
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        SinkingTile tile = collision.GetComponent<SinkingTile>();
+        if (tile)
+        {
+            int remove = -1;
+            for(int i = 0; i < standingOnTiles.Count; i++)
+            {
+                if (standingOnTiles[i] == tile)
+                {
+                    remove = i;
+                    break;
+                }
+            }
+            if (remove != -1) standingOnTiles.RemoveAt(remove);
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Lava")) standingOnLava = false;
     }
 }

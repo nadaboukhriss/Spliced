@@ -7,39 +7,15 @@ public class RangeEnemy1AI : EnemyAIAstar
 
     [SerializeField]
     private GameObject projectilePrefab;
+    [SerializeField]
+    private float projectileSpeed = 10f;
 
     public void Update()
     {
-        if (state == EnemyState.Dead)
-        {
-            rigidbody2d.velocity = Vector2.zero;
-            return;
-        }
-        //Cooldown for the enemy attacking
         ReduceCooldown();
-
-        bool canSeeTarget = CanSeeTarget();
-        // Check if we are in range of attacking the player
-        if (InRangeOfAttack())
-        {
-            state = EnemyState.Attacking;
-            path = null; //Remove the path we are walking
-            if (IsAbilityReady())
-            {
-                Attack();
-            }
-        }
-        else if (canSeeTarget || Time.time - lastSeenTarget < rememberTargetTime)
-        {
-            state = EnemyState.Walking;
-        }
-        else
-        {
-            state = EnemyState.Walking;
-            returnToStart = true;
-            //state = EnemyState.Idle;
-        }
+        DecideAction();
     }
+
     void FixedUpdate()
     {
         if (path == null || currentWaypoint >= path.vectorPath.Count)
@@ -54,7 +30,8 @@ public class RangeEnemy1AI : EnemyAIAstar
         {
 
             movementDirection = ((Vector2)path.vectorPath[currentWaypoint] - rigidbody2d.position).normalized;
-            TryMove(movementDirection);
+            //TryMove(movementDirection);
+            rigidbody2d.AddForce(movementDirection * speed * 1000 * Time.deltaTime);
 
             animator.SetFloat("XInput", movementDirection.x);
             animator.SetFloat("YInput", movementDirection.y);
@@ -79,8 +56,6 @@ public class RangeEnemy1AI : EnemyAIAstar
 
         projectileInstance.transform.position = transform.position;
         projectileInstance.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
-
-        projectileInstance.GetComponent<Projectile>().travelDirection = direction;
-        projectileInstance.GetComponent<Projectile>().SetDamage(enemy.GetDamage());
+        projectileInstance.GetComponent<Projectile>().SetParameters(enemy.GetDamage(), enemy.GetKnockbackForce(), direction * projectileSpeed);
     }
 }

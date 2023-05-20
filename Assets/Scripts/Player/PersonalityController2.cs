@@ -6,6 +6,8 @@ public abstract class PersonalityController2 : MonoBehaviour
 {
     [Header("Common Personality Stats")]
     public float moveSpeed;
+    [SerializeField]
+    private float knockBackForce = 30f;
 
     public AbilityBase basicAbility;
     public AbilityBase specialAbility;
@@ -19,6 +21,11 @@ public abstract class PersonalityController2 : MonoBehaviour
         playerController = GameManager.Instance.player.GetComponent<PlayerController>();
     }
 
+    public abstract float GetBasicDamage();
+    public float GetKnockbackForce()
+    {
+        return knockBackForce;
+    }
     public abstract void BasicAbility();
     public abstract void SpecialAbility();
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class EnterDungeon : MonoBehaviour
@@ -10,9 +11,20 @@ public class EnterDungeon : MonoBehaviour
 
     [SerializeField]
     private Transform teleportTo;
+    [SerializeField]
+    private bool requiresObjectToOpen = false;
+    [SerializeField]
+    private ItemType requirement;
+    [SerializeField]
+    private Dialogue cantEnterDialogue;
+
     private bool isPlayerInCollider = false;
     private Collider2D playerCollider;
 
+    public void Start()
+    {
+        GameManager.Instance.player.GetComponent<PlayerInput>().actions.FindAction("Interact").performed += InteractWithDoor;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
        if (other.tag == "Player")
@@ -27,11 +39,27 @@ public class EnterDungeon : MonoBehaviour
         isPlayerInCollider = false;
     }   
 
-    private void Update()
+    private bool CanEnter()
     {
-        if(Input.GetButtonDown("Fire2") && isPlayerInCollider)
+        Player player = GameManager.Instance.player.GetComponent<Player>();
+        if (requiresObjectToOpen && !player.inventory.HasItem(requirement)) return false;
+
+        return true;
+    }
+    
+    private void InteractWithDoor(InputAction.CallbackContext ctx)
+    {
+        if (isPlayerInCollider)
         {
-            playerCollider.transform.position = teleportTo.position;
+            if (CanEnter())
+            {
+                playerCollider.transform.position = teleportTo.position;
+            }
+            else
+            {
+                cantEnterDialogue.TriggerDialogue("Entrance", GetComponent<SpriteRenderer>().sprite);
+            }
+
         }
     }
 }

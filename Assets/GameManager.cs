@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameObject player;
     public Camera mainCamera;
+    public Transform respawnPoint;
     public void Awake()
     {
         Instance = this;

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82f98984741bca4896512fb750aeaa0, type: 3}
+  m_Name: BlueJewel
+  m_EditorClassIdentifier: 
+  itemName: Blue Jewel
+  type: 2
+  icon: {fileID: 1694986413, guid: 33ffb6833b575c74cbc5114451d8f62e, type: 3}
+  hasDialogue: 1
+  isQuest: 1
+  dialogue:
+    sentences:
+    - 'Ash: Got the blue amulet piece. We''re getting closer.'
+    - 'Aelia: We need to keep working together to find the rest and break this curse.'
+    - 'Ash: Agreed. Let''s keep searching and put an end to this.'
+    - Your progress can be seen in the menu!
+  description: 
+  trustGain: 30

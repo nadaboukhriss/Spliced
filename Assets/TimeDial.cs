@@ -10,13 +10,6 @@ public class TimeDial : MonoBehaviour
     [SerializeField]
     private float dialRange = 360f;
 
-    [SerializeField]
-    private float greenZoneSize = 0.15f;
-    [SerializeField]
-    private float yellowZoneSize = 0.4f;
-    [SerializeField]
-    private float redZoneSize = 0.45f;
-
 
     private Player player;
     private SwapCharacters swap;
@@ -25,45 +18,6 @@ public class TimeDial : MonoBehaviour
     {
         player = GameManager.Instance.player.GetComponent<Player>();
         swap = GameManager.Instance.player.GetComponent<SwapCharacters>();
-    }
-    public void Update()
-    {
-        float time1 = swap.GetAvatar1Time();
-        float time2 = swap.GetAvatar2Time();
-        float difference = Mathf.Abs(time1 - time2);
-        float normalizedDiff = difference / swap.maxTime;
-
-        float greenZoneEnd = greenZoneSize;
-        float yellowZoneEnd = greenZoneEnd + yellowZoneSize;
-        float redZoneEnd = yellowZoneEnd + redZoneSize;
-
-        float xpChangeRate = 0f;
-        if (normalizedDiff <= greenZoneEnd)
-        {
-            // Hand is in green zone
-            xpChangeRate = 1;
-            float t = Mathf.InverseLerp(0, greenZoneEnd, normalizedDiff);
-            xpChangeRate *= Mathf.Lerp(0f, 1f, t);
-            //GetComponent<Image>().color = Color.green;
-        }
-        else if (normalizedDiff <= yellowZoneEnd)
-        {
-            // Hand is in yellow zone
-            xpChangeRate = 0f;
-            //GetComponent<Image>().color = Color.yellow;
-        }
-        else
-        {
-            // Hand is in red zone
-            xpChangeRate = -1;
-            float t = Mathf.InverseLerp(yellowZoneEnd, redZoneEnd, normalizedDiff);
-            xpChangeRate *= Mathf.Lerp(0f, 1f, t);
-            //GetComponent<Image>().color = Color.red;
-        }
-
-        // Apply XP changes
-        float xpChange = xpChangeRate * Time.deltaTime;
-        player.ChangeXP(xpChange);
     }
     // Update the dial rotation based on the distribution of time between the two personalities
     public void UpdateDial(float time1, float time2,float maxDiff)

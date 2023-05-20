@@ -6,19 +6,19 @@ public class Collectable : MonoBehaviour
 {
     [SerializeField]
     private ItemObject item;
-    [SerializeField]
-    private Dialogue dialogue;
 
+    public void Collect(Player player)
+    {
+        Debug.Log("Pick up item " + item.itemName);
+        item.Collect(player);
+        Destroy(gameObject);
+    }
     public void OnTriggerEnter2D(Collider2D other)
     {
         Player player = other.GetComponent<Player>();
         if (player)
         {
-            Debug.Log("Pick up item " + item.itemName);
-            SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.PickupSound);
-            dialogue.TriggerDialogue(item.itemName, item.icon);
-            player.inventory.AddItem(item);
-            Destroy(gameObject);
+            Collect(player);
         }
     }
 }

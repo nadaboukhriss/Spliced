@@ -21,12 +21,15 @@ public class HumanController : PersonalityController2
         Debug.Log("Human sword attack, Damage: " + swordDamage.ToString());
     }
 
+    public override float GetBasicDamage()
+    {
+        return swordDamage;
+    }
+
     public override void SpecialAbility()
     {
         specialAbility.Activate();
-        playerController.SetBoosting(true);
-        playerController.rigidbody2d.AddForce(playerController.GetLastOrientering() * dashForce);
-        Invoke(nameof(StopSpecialAbility), dashDuration);
+        playerController.rigidbody2d.AddForce(playerController.GetLastOrientering() * dashForce,ForceMode2D.Impulse);
     }
 
     private void StopSpecialAbility()

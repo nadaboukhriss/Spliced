@@ -20,7 +20,8 @@ public class SkeletonAI : EnemyAIAstar
         {
 
             movementDirection = ((Vector2)path.vectorPath[currentWaypoint] - rigidbody2d.position).normalized;
-            TryMove(movementDirection);
+            //TryMove(movementDirection);
+            rigidbody2d.AddForce(movementDirection * speed * 1000 * Time.deltaTime);
 
             animator.SetBool("isWalking", true);
 
@@ -39,34 +40,8 @@ public class SkeletonAI : EnemyAIAstar
 
     public void Update()
     {
-        if (state == EnemyState.Dead)
-        {
-            rigidbody2d.velocity = Vector2.zero;
-            return;
-        }
         ReduceCooldown();
-
-        bool canSeeTarget = CanSeeTarget();
-        // Check if we are in range of attacking the player
-        if (InRangeOfAttack())
-        {
-            state = EnemyState.Attacking;
-            path = null; //Remove the path we are walking
-            if (IsAbilityReady())
-            {
-                Attack();
-            }
-        }
-        else if (canSeeTarget || Time.time - lastSeenTarget < rememberTargetTime)
-        {
-            state = EnemyState.Walking;
-        }
-        else
-        {
-            state = EnemyState.Walking;
-            returnToStart = true;
-            //state = EnemyState.Idle;
-        }
+        DecideAction();
     }
 
 

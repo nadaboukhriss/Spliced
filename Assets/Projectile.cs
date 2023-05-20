@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 20f;
     public float maxTimeAlive = 10f;
-
+    private float knockbackForce = 10f;
     private float timeAlive = 0f;
     private bool isDead;
 
-    public Vector2 travelDirection;
+    private Vector2 travelDirection;
     private Animator animator;
     private Rigidbody2D rigidbody2d;
 
 
     private float damage = 0f;
 
-    public void SetDamage(float dmg)
+    public void SetParameters(float dmg,float knockback, Vector2 movement)
     {
-        damage = dmg;
+        this.damage = dmg;
+        this.knockbackForce = knockback;
+        this.travelDirection = movement;
     }
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class Projectile : MonoBehaviour
 
         if (!isDead)
         {
-            rigidbody2d.MovePosition(rigidbody2d.position + travelDirection.normalized * speed * Time.deltaTime);
+            rigidbody2d.MovePosition(rigidbody2d.position + travelDirection * Time.deltaTime);
         }
 
         timeAlive += Time.deltaTime;
@@ -51,14 +52,14 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (isDead) return;
-        // Destroy the fireball if it hits an enemy or other obstacle
         if (other.CompareTag("Player") || (other.CompareTag("Obstacle")))
         {
             Player player = other.GetComponentInParent<Player>();
             if (player)
             {
-
-                player.TakeDamage((int)damage);
+                Vector2 direction = (player.transform.position - transform.position).normalized;
+                Vector2 knockback = direction * knockbackForce;
+                player.TakeDamage((int)damage, knockback);
             }
             PlayExplosion();
         }
@@ -66,7 +67,7 @@ public class Projectile : MonoBehaviour
 
     private void PlayExplosion()
     {
-        speed = 0;
+        travelDirection = Vector2.zero;
         isDead = true;
         animator.SetTrigger("destroy");
     }

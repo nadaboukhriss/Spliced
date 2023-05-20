@@ -8,7 +8,6 @@ public class Timer : MonoBehaviour
     public Slider timerSlider;
     public Text timerText;
     public float swapTime;
-    public float swapSpeed;
     
     private SwapCharacters swap;
     private float timeSpent;
