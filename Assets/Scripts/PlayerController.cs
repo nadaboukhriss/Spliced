@@ -177,6 +177,9 @@ public class PlayerController : MonoBehaviour
 
                 float attackDistance = 1f;
                 if (currentShape == human){
+                    // SFX
+                    SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.PlayerSwordSwingSound);
+                    
                     // Find all enemy objects in range
                     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackDistance, LayerMask.GetMask("Enemy"));
 
@@ -222,6 +225,9 @@ public class PlayerController : MonoBehaviour
         
         fireballInstance.GetComponent<Fireball>().travelDirection = target_direction;
         fireballInstance.GetComponent<Fireball>().dirUp = dirUp;
+
+        //SFX
+        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.FireballSound);
     }
 
     public void DashAbility()

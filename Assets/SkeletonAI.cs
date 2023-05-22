@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkeletonAI : EnemyAIAstar
 {
+    AudioSource audioSourceStepSound;
 
     void FixedUpdate()
     {
@@ -60,12 +61,19 @@ public class SkeletonAI : EnemyAIAstar
         else if (canSeeTarget || Time.time - lastSeenTarget < rememberTargetTime)
         {
             state = EnemyState.Walking;
+            // SFX on
+            /*audioSourceStepSound = gameObject.AddComponent<AudioSource>();
+            audioSourceStepSound.clip = SFXManager.sfxinstance.SkellyStepSound;
+            audioSourceStepSound.loop = true;
+            audioSourceStepSound.Play();*/
         }
         else
         {
             state = EnemyState.Walking;
             returnToStart = true;
             //state = EnemyState.Idle;
+            // SFX off
+            //SFXManager.sfxinstance.Audio.Stop(SFXManager.sfxinstance.SkellyStepSound);
         }
     }
 

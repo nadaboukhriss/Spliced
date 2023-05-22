@@ -82,5 +82,25 @@ public class RangeEnemy1AI : EnemyAIAstar
 
         projectileInstance.GetComponent<Projectile>().travelDirection = direction;
         projectileInstance.GetComponent<Projectile>().SetDamage(enemy.GetDamage());
+
+        // SFX
+        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.NoFaceAttackSound);
     }
+
+    /*override
+    public void TakeDamage(float damage)
+    {
+        // SFX
+        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.NoFaceHitSound);
+        TakeDamage(damage);
+    }
+
+    override
+    public void Defeated()
+    {
+        // SFX
+        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.NoFaceDeathSound);
+        Defeated();
+    }
+    */
 }
