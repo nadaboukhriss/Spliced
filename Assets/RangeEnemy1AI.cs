@@ -86,21 +86,4 @@ public class RangeEnemy1AI : EnemyAIAstar
         // SFX
         SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.NoFaceAttackSound);
     }
-
-    /*override
-    public void TakeDamage(float damage)
-    {
-        // SFX
-        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.NoFaceHitSound);
-        TakeDamage(damage);
-    }
-
-    override
-    public void Defeated()
-    {
-        // SFX
-        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.NoFaceDeathSound);
-        Defeated();
-    }
-    */
 }
