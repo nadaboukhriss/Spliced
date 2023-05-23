@@ -10,13 +10,13 @@ public class SFXManager : MonoBehaviour
     public AudioClip FireballSound; // Plays when Ash shoots her fireball
     public AudioClip HitSound; // Can be played whenever something is hit (with sword/fireball)
     public AudioClip NoFaceAttackSound; // When the floating enemy that looks like No Face from Sprited Away shoots its projectiles
-    public AudioClip NoFaceDeathSound; // self-explanatory XD
-    public AudioClip NoFaceHitSound; // when it's hit
+    // in Enemy scipt: public AudioClip NoFaceDeathSound; // self-explanatory XD
+    // in Enemy scipt: public AudioClip NoFaceHitSound; // when it's hit
     public AudioClip PlayerSwordSwingSound; // self-explanatory
-    public AudioClip SkellyDeathSound; // skeleton dies
-    public AudioClip SkellyStepSound; // when the skeletons walk
-    public AudioClip WalkOnGrassSound;
-    public AudioClip WalkOnStoneSound;
+    // in Enemy scipt: public AudioClip SkellyDeathSound; // skeleton dies
+    // not in use: public AudioClip SkellyStepSound; // when the skeletons walk
+    // not in use: public AudioClip WalkOnGrassSound;
+    // not in use: public AudioClip WalkOnStoneSound;
 
     public static SFXManager sfxinstance; // singelton - so that only one manager object exists
 
