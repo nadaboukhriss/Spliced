@@ -194,6 +194,8 @@ MonoBehaviour:
   damage: 5
   knockbackForce: 5
   trustGain: 20
+  HitSound: {fileID: 8300000, guid: 784260fc58b24471f9ac43e737d0b691, type: 3}
+  DeathSound: {fileID: 8300000, guid: 89473789b26ea46878fb9bb3b8ba9c97, type: 3}
 --- !u!114 &2318856193959915935
 MonoBehaviour:
   m_ObjectHideFlags: 0

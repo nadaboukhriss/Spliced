@@ -172,6 +172,10 @@ public class PlayerController : MonoBehaviour
             {
 
                 currentShape.basicAbility.Activate();
+                if(currentShape == human){
+                    //SFX
+                    SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.PlayerSwordSwingSound);
+                }
                 Vector3 mousePos = GameManager.Instance.mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 Vector3 target_direction = (mousePos - fireballSpawnPoint.position);
                 Vector3 direction = new Vector2(target_direction.x, target_direction.y).normalized;
