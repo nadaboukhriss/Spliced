@@ -212,7 +212,6 @@ GameObject:
   - component: {fileID: 8398050545150604281}
   - component: {fileID: 8398050545150604286}
   - component: {fileID: 8398050545150604287}
-  - component: {fileID: 8398050545150604284}
   - component: {fileID: 8398050545150604280}
   m_Layer: 7
   m_Name: Door 1
@@ -304,12 +303,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchToSceneWithBuildIndex: 1
+  fadeInFadeOutElt: {fileID: 0}
   teleportTo: {fileID: 0}
-  requiresObjectToOpen: 1
+  requiresObjectToOpen: 0
   requirement: 1
   cantEnterDialogue:
-    sentences:
-    - This door awaits a key to unlock its mysteries.
+    sentences_to_human: []
+    sentences_to_fox: []
+    commonDialogue:
+    - No key, no pass
 --- !u!50 &8398050545150604287
 Rigidbody2D:
   serializedVersion: 4
@@ -331,32 +333,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &8398050545150604284
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8398050545150604274}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.007845402, y: -0.038557768}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6548033, y: 1.1984305}
-  m_EdgeRadius: 0
 --- !u!60 &8398050545150604280
 PolygonCollider2D:
   m_ObjectHideFlags: 0

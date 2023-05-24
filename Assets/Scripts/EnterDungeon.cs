@@ -68,8 +68,8 @@ public class EnterDungeon : MonoBehaviour
     IEnumerator ActivateAndTeleport()
     {
     // // GameObject prefab = Resources.Load<GameObject>("FadeInFadeOut");
-    // // fadeInFadeOutElt = Instantiate(prefab);
-        // fadeInFadeOutElt.SetActive(true); // First line
+        //fadeInFadeOutElt = Instantiate(prefab);
+        //fadeInFadeOutElt.SetActive(true); // First line
 
         Animator animator = fadeInFadeOutElt.GetComponent<Animator>();
         animator.SetTrigger("FadeIn");
@@ -82,6 +82,6 @@ public class EnterDungeon : MonoBehaviour
         animator.SetTrigger("FadeOut"); // Third line
 
         // fadeInFadeOutElt.SetActive(false);
-    // // Destroy(fadeInFadeOutElt);
+        //Destroy(fadeInFadeOutElt);
     }
 }
