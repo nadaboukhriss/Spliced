@@ -56,14 +56,7 @@ public class Enemy : MonoBehaviour
         UpdateHealthbar(health/maxHealth);
         if (health <= 0)
         {
-            animator.SetTrigger("Dead");
-            ai.SetState(EnemyState.Dead);
-            
-            // SFX
-            if (DeathSound != null)
-            {
-                SFXManager.sfxinstance.Audio.PlayOneShot(DeathSound.clip);
-            }
+            Death();
         } else {
 
             StopCoroutine(damageFlash());
@@ -87,14 +80,8 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            animator.SetTrigger("Dead");
-            ai.SetState(EnemyState.Dead);
+            Death();
             
-            // SFX
-            if (DeathSound != null)
-            {
-                SFXManager.sfxinstance.Audio.PlayOneShot(DeathSound.clip);
-            }
         } else {
 
             StopCoroutine(damageFlash());
@@ -112,6 +99,12 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.player.GetComponent<Player>().ChangeTrust(trustGain);
         animator.SetTrigger("Dead");
         ai.SetState(EnemyState.Dead);
+        
+        // SFX
+        if (DeathSound != null)
+        {
+            SFXManager.sfxinstance.Audio.PlayOneShot(DeathSound.clip);
+        }
     }
 
     public bool IsAlive()
