@@ -9,10 +9,16 @@ public class EnterDungeon : MonoBehaviour
     public int switchToSceneWithBuildIndex;
 
     [SerializeField]
+    private GameObject fadeInFadeOutElt;
+    [SerializeField]
     private Transform teleportTo;
     private bool isPlayerInCollider = false;
     private Collider2D playerCollider;
 
+    private void start(){
+        // GameObject prefab = Resources.Load<GameObject>("FadeInFadeOut");
+        // fadeInFadeOutElt = Instantiate(prefab);
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
        if (other.tag == "Player")
@@ -31,7 +37,47 @@ public class EnterDungeon : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire2") && isPlayerInCollider)
         {
-            playerCollider.transform.position = teleportTo.position;
+            // fadeInFadeOutElt.SetActive(true);
+            // yield return new WaitForSeconds(1f); // Wait for 1 second
+            // playerCollider.transform.position = teleportTo.position;
+            // Animator animator = fadeInFadeOutElt.GetComponent<Animator>();
+            // animator.SetTrigger("FadeOut");
+            // gameObject.SetActive(false);
+            StartCoroutine(ActivateAndTeleport());
+
+            // fadeInFadeOutElt.SetActive(true); // First line
+            // Animator animator = fadeInFadeOutElt.GetComponent<Animator>();
+            // animator.SetTrigger("FadeIn");
+
+            // // yield return new WaitForSeconds(1f); // Wait for 1 second
+
+            // playerCollider.transform.position = teleportTo.position; // Second line
+
+    
+            // animator.SetTrigger("FadeOut"); // Third line
+
+            // fadeInFadeOutElt.SetActive(false);
         }
+
+    }
+
+    IEnumerator ActivateAndTeleport()
+    {
+    // // GameObject prefab = Resources.Load<GameObject>("FadeInFadeOut");
+    // // fadeInFadeOutElt = Instantiate(prefab);
+        // fadeInFadeOutElt.SetActive(true); // First line
+
+        Animator animator = fadeInFadeOutElt.GetComponent<Animator>();
+        animator.SetTrigger("FadeIn");
+
+        yield return new WaitForSeconds(1f); // Wait for 1 second
+
+        playerCollider.transform.position = teleportTo.position; // Second line
+
+        yield return new WaitForSeconds(0.25f); // Wait for 1 second
+        animator.SetTrigger("FadeOut"); // Third line
+
+        // fadeInFadeOutElt.SetActive(false);
+    // // Destroy(fadeInFadeOutElt);
     }
 }
