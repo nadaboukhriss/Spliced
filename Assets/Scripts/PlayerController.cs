@@ -209,6 +209,9 @@ public class PlayerController : MonoBehaviour
         fireballInstance.GetComponent<Fireball>().travelDirection = target_direction;
         fireballInstance.GetComponent<Fireball>().SetDamage(currentShape.GetBasicDamage());
         fireballInstance.GetComponent<Fireball>().SetKnockbackForce(currentShape.GetKnockbackForce());
+
+        //SFX
+        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.FireballSound);
     }
 
     public void DashAbility()
