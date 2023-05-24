@@ -19,12 +19,12 @@ public class FadeScreen : MonoBehaviour
         
         //Hide the player while screen is fading
         GameManager.Instance.player.GetComponent<PlayerController>().LockMovement();
-        GameManager.Instance.player.SetActive(false);
+        //GameManager.Instance.player.SetActive(false);
         
         animator.SetTrigger("FadeIn");
     }
     public void MovePlayer(){
-        GameManager.Instance.player.SetActive(true);
+        //GameManager.Instance.player.SetActive(true);
         GameManager.Instance.player.transform.position = moveTo; // Second line
         animator.SetTrigger("FadeOut");
     }

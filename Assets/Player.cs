@@ -79,6 +79,9 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             Death();
+        }else{
+            StopCoroutine(damageFlash());
+            StartCoroutine(damageFlash());
         }
     }
 

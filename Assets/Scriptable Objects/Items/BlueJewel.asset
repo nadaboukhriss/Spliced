@@ -21,6 +21,8 @@ MonoBehaviour:
     sentences_to_human: []
     sentences_to_fox: []
     commonDialogue:
-    - Nice
+    - Look, it's a piece of the Amulet of Souls! This blue jewel radiates with ancient
+      power.
+    - Now that we have the fragment, let's find our way back.
   description: 
   trustGain: 30

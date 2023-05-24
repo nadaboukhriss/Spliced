@@ -28,6 +28,9 @@ public class HumanController : PersonalityController2
 
     public override void SpecialAbility()
     {
+        if(playerController.standingOnLava && !playerController.StandingOnTile()){
+            return;
+        }
         specialAbility.Activate();
         playerController.rigidbody2d.AddForce(playerController.GetLastOrientering() * dashForce,ForceMode2D.Impulse);
     }

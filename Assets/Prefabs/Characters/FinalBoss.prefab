@@ -190,10 +190,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7bce60fba843c4ebea8ff90824c472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  damage: 5
+  maxHealth: 50
+  damage: 20
   knockbackForce: 10
   trustGain: 60
+  HitSound: {fileID: 0}
+  DeathSound: {fileID: 0}
 --- !u!114 &2318856193959915935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +240,7 @@ MonoBehaviour:
   showGizmos: 1
   projectilePrefab: {fileID: 105277328274714729, guid: 65bb0087cae1e4b208d7afaffa751634, type: 3}
   projectileSpeed: 15
+  projectileSpawnOffset: 0.5
 --- !u!114 &8144819269439400716
 MonoBehaviour:
   m_ObjectHideFlags: 0

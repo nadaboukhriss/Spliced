@@ -9,6 +9,8 @@ public class RangeEnemy1AI : EnemyAIAstar
     private GameObject projectilePrefab;
     [SerializeField]
     private float projectileSpeed = 10f;
+    [SerializeField]
+    private float projectileSpawnOffset = 0f;
 
     public void Update()
     {
@@ -54,7 +56,7 @@ public class RangeEnemy1AI : EnemyAIAstar
         Vector2 direction = ((Vector2)(target.position - transform.position)).normalized;
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        projectileInstance.transform.position = transform.position;
+        projectileInstance.transform.position = transform.position + (Vector3)(direction * projectileSpawnOffset);
         projectileInstance.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
         projectileInstance.GetComponent<Projectile>().SetParameters(enemy.GetDamage(), enemy.GetKnockbackForce(), direction * projectileSpeed);
 

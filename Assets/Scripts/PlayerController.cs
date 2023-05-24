@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private bool launchedFireBall = false;
 
     private List<SinkingTile> standingOnTiles;
-    private bool standingOnLava = false;
+    public bool standingOnLava = false;
     private float lavaDamageTickSpeed = 1.0f;
     private float tickCooldown = 0f;
     private void Awake()
@@ -67,6 +67,17 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Player>();
     }
 
+
+    public bool StandingOnTile(){
+        foreach (SinkingTile tile in standingOnTiles)
+            {
+                if (!tile.submerged)
+                {
+                    return true;
+                }
+            }
+        return false;
+    }
     public void Update()
     {
         switchAbility.ReduceCooldown();
@@ -78,13 +89,7 @@ public class PlayerController : MonoBehaviour
         if (standingOnLava && tickCooldown <= 0)
         {
             tickCooldown = lavaDamageTickSpeed;
-            foreach (SinkingTile tile in standingOnTiles)
-            {
-                if (!tile.submerged)
-                {
-                    return;
-                }
-            }
+            if(StandingOnTile()) return;
             //Not safe on tile;
             player.TakeDamage(25);
         }
@@ -144,12 +149,12 @@ public class PlayerController : MonoBehaviour
 
     public bool IsPlayingAelia()
     {
-        return swapCharacters.getCurrentCharacter() == 1;
+        return currentShape == human;
     }
 
     public bool IsPlayingAsh()
     {
-        return swapCharacters.getCurrentCharacter() == 2;
+        return currentShape == fox;
     }
 
     public AbilityBase GetSwitchAbility()

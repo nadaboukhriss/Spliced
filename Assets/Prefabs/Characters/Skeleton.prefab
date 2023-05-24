@@ -264,10 +264,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7bce60fba843c4ebea8ff90824c472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  damage: 20
-  knockbackForce: 20
-  trustGain: 10
+  maxHealth: 20
+  damage: 10
+  knockbackForce: 10
+  trustGain: 30
   HitSound: {fileID: -5006102313468113098}
   DeathSound: {fileID: 1413337911658532114}
 --- !u!114 &565440801
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 4891630690262267675
+  uniqueID: 7481434727613176040
   updateError: 0.5
   checkTime: 0.2
 --- !u!82 &-5006102313468113098

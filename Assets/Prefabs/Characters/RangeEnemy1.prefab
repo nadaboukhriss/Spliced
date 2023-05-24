@@ -193,9 +193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  damage: 5
+  damage: 7
   knockbackForce: 5
-  trustGain: 50
+  trustGain: 25
   HitSound: {fileID: -724200662142883886}
   DeathSound: {fileID: 7538775158553625464}
 --- !u!114 &2318856193959915935
@@ -217,13 +217,13 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 192
-  speed: 2
+  speed: 1
   nextWaypointDistance: 0.6
   detectionRange: 8
-  attackRange: 4
+  attackRange: 6
   rangeOffset: {x: 0, y: 0, z: 0}
   rememberTargetTime: 3
-  attackCooldown: 6
+  attackCooldown: 2
   movementFilter:
     useTriggers: 0
     useLayerMask: 0
