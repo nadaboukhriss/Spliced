@@ -13,8 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float trustGain = 10f;
 
-    public AudioClip HitSound; // Can be played whenever something is hit (with sword/fireball)
-    public AudioClip DeathSound;
+    public AudioSource HitSound; // Can be played whenever something is hit (with sword/fireball)
+    public AudioSource DeathSound;
 
     protected float health;
 
@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
             // SFX
             if (DeathSound != null)
             {
-                SFXManager.sfxinstance.Audio.PlayOneShot(DeathSound);
+                SFXManager.sfxinstance.Audio.PlayOneShot(DeathSound.clip);
             }
         } else {
 
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
             // SFX
             if (HitSound != null)
             {
-                SFXManager.sfxinstance.Audio.PlayOneShot(HitSound);
+                SFXManager.sfxinstance.Audio.PlayOneShot(HitSound.clip);
             }
         }
     }
@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
             // SFX
             if (DeathSound != null)
             {
-                SFXManager.sfxinstance.Audio.PlayOneShot(DeathSound);
+                SFXManager.sfxinstance.Audio.PlayOneShot(DeathSound.clip);
             }
         } else {
 
@@ -103,7 +103,7 @@ public class Enemy : MonoBehaviour
             // SFX
             if (HitSound != null)
             {
-                SFXManager.sfxinstance.Audio.PlayOneShot(HitSound);
+                SFXManager.sfxinstance.Audio.PlayOneShot(HitSound.clip);
             }
         }
     }

@@ -28,7 +28,6 @@ public class NPC : MonoBehaviour
 
             Debug.Log("Met with an NPC");
 
-            SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.PickupSound);
             dialogue.TriggerDialogue(objectName, objectSprite, isHuman);
 
             if(provideItemTo == ProvideItemTo.Human && isHuman){
