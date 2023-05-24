@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   damage: 10
-  knockbackForce: 10
+  knockbackForce: 20
   trustGain: 30
   HitSound: {fileID: -5006102313468113098}
   DeathSound: {fileID: 1413337911658532114}
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 7481434727613176040
+  uniqueID: 168082124228618278
   updateError: 0.5
   checkTime: 0.2
 --- !u!82 &-5006102313468113098
