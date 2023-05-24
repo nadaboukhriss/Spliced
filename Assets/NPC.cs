@@ -26,8 +26,6 @@ public class NPC : MonoBehaviour
             spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             Sprite objectSprite = spriteRenderer.sprite; 
 
-            Debug.Log("Met with an NPC");
-
             dialogue.TriggerDialogue(objectName, objectSprite, isHuman);
 
             if(provideItemTo == ProvideItemTo.Human && isHuman){
