@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Key
   type: 1
-  icon: {fileID: 21300000, guid: 1941dac7cd269b149869ce42ccd78213, type: 3}
+  icon: {fileID: 1044558710, guid: 1941dac7cd269b149869ce42ccd78213, type: 3}
   hasDialogue: 1
   isQuest: 0
   dialogue:
