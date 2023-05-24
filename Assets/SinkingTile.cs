@@ -35,7 +35,6 @@ public class SinkingTile : MonoBehaviour
         {
             stepCooldown = timeBetweenSteps;
             Color c = spriteRenderer.color;
-            Debug.Log("Num object on tile: " + numObjectsOnTile);
             //If more than load limit is on tile, sink it, otherwise raise it.
             if (numObjectsOnTile >= sinkingLoad)
             {

@@ -55,7 +55,7 @@ public class EnterDungeon : MonoBehaviour
         {
             if (CanEnter())
             {
-                StartCoroutine(ActivateAndTeleport());
+                GameManager.Instance.fadeScreen.StartFade(teleportTo.position);
             }
             else
             {

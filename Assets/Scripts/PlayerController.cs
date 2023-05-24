@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
         fox.ReduceCooldown();
 
         tickCooldown -= Time.deltaTime;
+        Debug.Log("standing on lava: " + standingOnLava);
         if (standingOnLava && tickCooldown <= 0)
         {
             tickCooldown = lavaDamageTickSpeed;
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
             //Not safe on tile;
-            player.TakeDamage(10);
+            player.TakeDamage(25);
         }
     }
 
@@ -220,7 +221,7 @@ public class PlayerController : MonoBehaviour
 
     public void DashAbility()
     {
-        Debug.Log("Start dashing");
+
     }
 
     public void HealAbility()

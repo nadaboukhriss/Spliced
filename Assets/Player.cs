@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Image healthHeart;
 
+    [SerializeField]
+    private GameObject fadeScreenUI;
+
     
 
     [SerializeField]
@@ -98,7 +101,7 @@ public class Player : MonoBehaviour
 
     private void RespawnPlayer()
     {
-        rigidbody2d.position = GameManager.Instance.respawnPoint.position;
+        GameManager.Instance.fadeScreen.StartFade(GameManager.Instance.respawnPoint.position);
         Heal(maxHealth);
         ChangeTrust(-looseTrustOnDeath);
     }
@@ -116,6 +119,25 @@ public class Player : MonoBehaviour
             health = maxHealth;
         }
         UpdateHealthUI();
+    }
+
+    IEnumerator ActivateAndTeleport()
+    {
+    // // GameObject prefab = Resources.Load<GameObject>("FadeInFadeOut");
+        //fadeInFadeOutElt = Instantiate(prefab);
+        //fadeInFadeOutElt.SetActive(true); // First line
+        Animator animator = fadeScreenUI.GetComponent<Animator>();
+        animator.SetTrigger("FadeIn");
+
+        yield return new WaitForSeconds(0.8f); // Wait for 1 second
+
+        transform.position = GameManager.Instance.respawnPoint.position; // Second line
+
+        yield return new WaitForSeconds(0.25f); // Wait for 1 second
+        animator.SetTrigger("FadeOut"); // Third line
+
+        // fadeInFadeOutElt.SetActive(false);
+        //Destroy(fadeInFadeOutElt);
     }
 
     // Activates flashing when taking damage

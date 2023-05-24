@@ -19,7 +19,6 @@ public class HumanController : PersonalityController2
         playerController.GetComponent<Animator>().SetTrigger("swordAttack");
         //SFX
         //Should modify hitbox of hurtbox when this is playing, is done in animator
-        Debug.Log("Human sword attack, Damage: " + swordDamage.ToString());
     }
 
     public override float GetBasicDamage()
