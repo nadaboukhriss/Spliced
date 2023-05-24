@@ -41,7 +41,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
         playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
     }
-    public void StartItemDialogue(string[] dialogue,string name, Sprite icon)
+    public bool StartItemDialogue(string[] dialogue,string name, Sprite icon)
     {
         Time.timeScale = 0;
         sentences.Clear();
@@ -67,10 +67,10 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence);
         }
 
-        DisplayNextSentence();
+        return DisplayNextSentence();
     }
 
-    public void StartDialogue(string[] dialogue)
+    public bool StartDialogue(string[] dialogue)
     {
         Time.timeScale = 0;
         sentences.Clear();
@@ -81,7 +81,7 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence);
         }
 
-        DisplayNextSentence();
+        return DisplayNextSentence();
     }
 
     public void OnDisplayNextSentence(InputAction.CallbackContext ctx)
@@ -91,18 +91,19 @@ public class DialogueManager : MonoBehaviour
             DisplayNextSentence();
         }
     }
-    public void DisplayNextSentence()
+    public bool DisplayNextSentence()
     {
         print("Next");
         if(sentences.Count == 0)
         {
             EndDialogue();
-            return;
+            return true;
         }
 
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
+        return false;
     }
 
     IEnumerator TypeSentence(string sentence)

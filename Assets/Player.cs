@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
     private void RespawnPlayer()
     {
         rigidbody2d.position = GameManager.Instance.respawnPoint.position;
-        Heal(maxHealth / 2);
+        Heal(maxHealth);
         ChangeTrust(-looseTrustOnDeath);
     }
     private void Death()
