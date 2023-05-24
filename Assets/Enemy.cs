@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float trustGain = 10f;
 
+    public AudioSource HitSound; // Can be played whenever something is hit (with sword/fireball)
+    public AudioSource DeathSound;
+
     protected float health;
 
     private bool isAlive = true;
@@ -53,12 +56,24 @@ public class Enemy : MonoBehaviour
         UpdateHealthbar(health/maxHealth);
         if (health <= 0)
         {
-            Death();
-        }
-        else
-        {
+            animator.SetTrigger("Dead");
+            ai.SetState(EnemyState.Dead);
+            
+            // SFX
+            if (DeathSound != null)
+            {
+                SFXManager.sfxinstance.Audio.PlayOneShot(DeathSound.clip);
+            }
+        } else {
+
             StopCoroutine(damageFlash());
             StartCoroutine(damageFlash());
+        
+            // SFX
+            if (HitSound != null)
+            {
+                SFXManager.sfxinstance.Audio.PlayOneShot(HitSound.clip);
+            }
         }
     }
 
@@ -69,14 +84,27 @@ public class Enemy : MonoBehaviour
         UpdateHealthbar(health / maxHealth);
         ai.SearchForPlayer();
         rigidbody2d.AddForce(knockback, ForceMode2D.Impulse);
+
         if (health <= 0)
         {
-            Death();
+            animator.SetTrigger("Dead");
+            ai.SetState(EnemyState.Dead);
+            
+            // SFX
+            if (DeathSound != null)
+            {
+                SFXManager.sfxinstance.Audio.PlayOneShot(DeathSound.clip);
+            }
         } else {
 
             StopCoroutine(damageFlash());
             StartCoroutine(damageFlash());
         
+            // SFX
+            if (HitSound != null)
+            {
+                SFXManager.sfxinstance.Audio.PlayOneShot(HitSound.clip);
+            }
         }
     }
     private void Death()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkeletonAI : EnemyAIAstar
 {
+    AudioSource audioSourceStepSound;
 
     void FixedUpdate()
     {

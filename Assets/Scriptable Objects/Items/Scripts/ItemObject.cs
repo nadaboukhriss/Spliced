@@ -26,7 +26,7 @@ public class ItemObject : ScriptableObject
 
     public void Collect(Player player)
     {
-        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.PickupSound);
+        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.PickupSound.clip);
         player.ChangeTrust(trustGain);
         if (hasDialogue)
         {

@@ -57,5 +57,8 @@ public class RangeEnemy1AI : EnemyAIAstar
         projectileInstance.transform.position = transform.position;
         projectileInstance.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
         projectileInstance.GetComponent<Projectile>().SetParameters(enemy.GetDamage(), enemy.GetKnockbackForce(), direction * projectileSpeed);
+
+        // SFX
+        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.NoFaceAttackSound.clip, 0.02f);
     }
 }
