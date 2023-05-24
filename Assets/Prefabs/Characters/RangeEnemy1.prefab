@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   damage: 5
-  knockbackForce: 10
+  knockbackForce: 5
   trustGain: 20
 --- !u!114 &2318856193959915935
 MonoBehaviour:
