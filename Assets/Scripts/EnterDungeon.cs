@@ -70,7 +70,7 @@ public class EnterDungeon : MonoBehaviour
         Animator animator = fadeInFadeOutElt.GetComponent<Animator>();
         animator.SetTrigger("FadeIn");
 
-        yield return new WaitForSeconds(1f); // Wait for 1 second
+        yield return new WaitForSeconds(0.8f); // Wait for 1 second
 
         playerCollider.transform.position = teleportTo.position; // Second line
 
