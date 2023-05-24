@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
             bool abnormalSpeed = rigidbody2d.velocity.magnitude > currentShape.moveSpeed;
             rigidbody2d.AddForce(movementInput.normalized * currentShape.moveSpeed * 1000 * Time.deltaTime);
 
-            if(rigidbody2d.velocity.magnitude > currentShape.moveSpeed && !abnormalSpeed)
+            if(rigidbody2d.velocity.magnitude > currentShape.moveSpeed && (!abnormalSpeed || (standingOnLava && !StandingOnTile())))
                 rigidbody2d.velocity = Vector2.ClampMagnitude(rigidbody2d.velocity, currentShape.moveSpeed);
             
             lastMovementInput = movementInput;
@@ -178,10 +178,8 @@ public class PlayerController : MonoBehaviour
             {
 
                 currentShape.basicAbility.Activate();
-                if(currentShape == human){
-                    //SFX
-                    SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.PlayerSwordSwingSound.clip);
-                }
+                animator.SetTrigger("basicAbility");
+                
                 Vector3 mousePos = GameManager.Instance.mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 Vector3 target_direction = (mousePos - fireballSpawnPoint.position);
                 Vector3 direction = new Vector2(target_direction.x, target_direction.y).normalized;
@@ -189,7 +187,11 @@ public class PlayerController : MonoBehaviour
                 animator.SetFloat("YAttack", direction.y);
                 animator.SetFloat("XInput", direction.x);
                 animator.SetFloat("YInput", direction.y);
-                animator.SetTrigger("basicAbility");
+                if(currentShape == human){
+                    //SFX
+                    SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.PlayerSwordSwingSound.clip);
+                }
+                
 
                 
             }
