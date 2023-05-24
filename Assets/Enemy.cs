@@ -65,11 +65,17 @@ public class Enemy : MonoBehaviour
             // SFX
             if (HitSound != null)
             {
-                SFXManager.sfxinstance.Audio.PlayOneShot(HitSound.clip);
+                IEnumerator coroutine = PlayAudio(HitSound.clip);
+                StartCoroutine(coroutine);
             }
         }
     }
 
+    public IEnumerator PlayAudio(AudioClip clip)
+    {
+        SFXManager.sfxinstance.Audio.PlayOneShot(clip);
+        yield return new WaitForSeconds(clip.length);
+    }
     public void TakeDamage(float damage, Vector2 knockback)
     {
         health -= damage;
@@ -90,7 +96,8 @@ public class Enemy : MonoBehaviour
             // SFX
             if (HitSound != null)
             {
-                SFXManager.sfxinstance.Audio.PlayOneShot(HitSound.clip);
+                IEnumerator coroutine = PlayAudio(HitSound.clip);
+                StartCoroutine(coroutine);
             }
         }
     }
@@ -103,7 +110,8 @@ public class Enemy : MonoBehaviour
         // SFX
         if (DeathSound != null)
         {
-            SFXManager.sfxinstance.Audio.PlayOneShot(DeathSound.clip);
+            IEnumerator coroutine = PlayAudio(DeathSound.clip);
+            StartCoroutine(coroutine);
         }
     }
 
