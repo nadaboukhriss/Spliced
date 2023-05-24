@@ -195,7 +195,7 @@ MonoBehaviour:
   maxHealth: 10
   damage: 5
   knockbackForce: 5
-  trustGain: 20
+  trustGain: 50
   HitSound: {fileID: -724200662142883886}
   DeathSound: {fileID: 7538775158553625464}
 --- !u!114 &2318856193959915935

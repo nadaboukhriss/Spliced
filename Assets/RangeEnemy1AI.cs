@@ -59,6 +59,6 @@ public class RangeEnemy1AI : EnemyAIAstar
         projectileInstance.GetComponent<Projectile>().SetParameters(enemy.GetDamage(), enemy.GetKnockbackForce(), direction * projectileSpeed);
 
         // SFX
-        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.NoFaceAttackSound.clip);
+        SFXManager.sfxinstance.Audio.PlayOneShot(SFXManager.sfxinstance.NoFaceAttackSound.clip, 0.02f);
     }
 }
