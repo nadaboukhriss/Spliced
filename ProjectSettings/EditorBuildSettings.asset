@@ -13,11 +13,14 @@ EditorBuildSettings:
     guid: ca2babc830169dc4081ce10e079d063c
   - enabled: 1
     path: Assets/Scenes/OpenWorld.unity
-    guid: 29a5ccf3d896d4bf9b5db912c59b8273
+    guid: 42cd12ec5af3940fabb649c160bec31e
   - enabled: 1
     path: Assets/Scenes/GameOverScreen.unity
     guid: d983f9403830d4e49a129a7f4226d4d7
   - enabled: 0
     path: Assets/Scenes/Dungeon1.unity
     guid: d882542e8a68d7f46a3b0d5b87ad37c6
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
