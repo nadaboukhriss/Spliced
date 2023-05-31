@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public Transform respawnPoint;
     public FadeScreen fadeScreen;
+    public int MenuIndex;
     public void Awake()
     {
         Instance = this;
@@ -19,6 +21,11 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
 
+    }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(MenuIndex, LoadSceneMode.Single);
     }
     
 }
