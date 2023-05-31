@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        Time.timeScale = 1.0f;
     }
 
 
@@ -25,7 +26,9 @@ public class GameManager : MonoBehaviour
 
     public void GoToMenu()
     {
+        Time.timeScale = 1.0f; // Unfreeze
         SceneManager.LoadScene(MenuIndex, LoadSceneMode.Single);
+
     }
     
 }
