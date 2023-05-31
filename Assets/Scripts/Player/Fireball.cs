@@ -57,14 +57,18 @@ public class Fireball : MonoBehaviour
         if (isDead || other.CompareTag("Player")) return;
         // Destroy the fireball if it hits an enemy or other obstacle
 
-        Enemy enemy = other.GetComponentInParent<Enemy>();
-        if (enemy)
+        if(other.CompareTag("Enemy") || other.CompareTag("Obstacle"))
         {
-            Vector2 direction = (enemy.transform.position - transform.position).normalized;
-            Vector2 knockback = direction * knockbackForce;
-            enemy.TakeDamage(damage,knockback);
+            Enemy enemy = other.GetComponentInParent<Enemy>();
+            if (enemy)
+            {
+                Vector2 direction = (enemy.transform.position - transform.position).normalized;
+                Vector2 knockback = direction * knockbackForce;
+                enemy.TakeDamage(damage, knockback);
+            }
+            PlayExplosion();
         }
-        PlayExplosion();
+        
         
     }
 

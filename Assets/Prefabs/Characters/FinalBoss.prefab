@@ -239,7 +239,7 @@ MonoBehaviour:
   collisionOffset: 0.001
   showGizmos: 1
   projectilePrefab: {fileID: 105277328274714729, guid: 65bb0087cae1e4b208d7afaffa751634, type: 3}
-  projectileSpeed: 15
+  projectileSpeed: 10
   projectileSpawnOffset: 0.5
 --- !u!114 &8144819269439400716
 MonoBehaviour:
